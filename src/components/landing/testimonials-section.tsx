@@ -11,7 +11,7 @@ export function TestimonialsSection() {
         />
 
         <div className="relative max-w-3xl mx-auto mt-8">
-          <div className="testimonial text-center p-8 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] backdrop-blur-lg opacity-0 scale-90">
+          <div className="testimonial text-center p-8 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
             <p className="text-lg italic mb-6 text-[rgba(255,255,255,0.9)] leading-relaxed">
               "They transformed our complex AI requirements into an elegant solution that exceeded all expectations. The team's expertise and dedication are unmatched."
             </p>

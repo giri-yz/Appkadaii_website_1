@@ -37,7 +37,7 @@ export function ProcessSection() {
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary to-transparent transform -translate-x-1/2 hidden md:block"></div>
           
           {processSteps.map((step, index) => (
-            <div key={index} className="process-step relative flex items-center mb-8 md:mb-4 opacity-0 md:[&:nth-child(even)]:flex-row-reverse">
+            <div key={index} className="process-step relative flex items-center mb-8 md:mb-4 md:[&:nth-child(even)]:flex-row-reverse">
               <div className="md:flex-1">
                 <div className="step-content p-6 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] md:mx-8 backdrop-blur-lg transition-all duration-300 hover:bg-[rgba(16,185,129,0.1)] hover:scale-105">
                   <h3 className="text-xl font-semibold mb-2 text-primary">{step.title}</h3>

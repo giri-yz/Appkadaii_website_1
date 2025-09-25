@@ -19,7 +19,7 @@ export function StatsExtendedSection() {
         />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
           {stats.map((stat, index) => (
-            <div key={index} className="extended-stat text-center p-6 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] backdrop-blur-lg transition-all duration-300 opacity-0 translate-y-8 hover:bg-[rgba(16,185,129,0.1)] hover:-translate-y-1">
+            <div key={index} className="extended-stat text-center p-6 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] backdrop-blur-lg transition-all duration-300 hover:bg-[rgba(16,185,129,0.1)] hover:-translate-y-1">
               <span className="block text-4xl font-bold text-primary mb-2">
                 <Counter target={stat.target} />{stat.suffix}
               </span>

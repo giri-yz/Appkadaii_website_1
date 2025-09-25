@@ -47,7 +47,7 @@ export function ServicesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {services.map((service, index) => (
-            <div key={index} className="service-card group bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] rounded-2xl p-8 text-center transition-all duration-300 backdrop-blur-lg relative overflow-hidden opacity-0 translate-y-12 hover:-translate-y-2.5 hover:scale-105 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)] hover:border-primary">
+            <div key={index} className="service-card group bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] rounded-2xl p-8 text-center transition-all duration-300 backdrop-blur-lg relative overflow-hidden hover:-translate-y-2.5 hover:scale-105 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)] hover:border-primary">
                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[rgba(16,185,129,0.2)] to-[rgba(16,185,129,0.1)] border-2 border-[rgba(16,185,129,0.3)] rounded-2xl transition-all duration-300 overflow-hidden group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)] group-hover:border-primary">
                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(16,185,129,0.1)] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>

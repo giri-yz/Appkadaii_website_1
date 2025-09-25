@@ -251,14 +251,8 @@
   }
   
   .section-heading {
-    @apply text-center mb-12 opacity-0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-out;
-  }
-
-  .section-heading.visible {
-      @apply opacity-100;
-      transform: translateY(0);
+    @apply text-center mb-12;
+    animation: fade-in-up 0.8s ease-out;
   }
 
   .section-title {
@@ -274,16 +268,9 @@
   }
 
   .service-card, .process-step, .portfolio-card, .testimonial, .extended-stat, .mid-cta, .tech-card, .faq-container {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fade-in-up 0.8s ease-out;
   }
-
-  .service-card.visible, .process-step.visible, .portfolio-card.visible, .testimonial.visible, .extended-stat.visible, .mid-cta.visible, .tech-card.visible, .faq-container.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  
   .footer {
     @apply bg-[rgba(16,185,129,0.05)] border-t border-[rgba(16,185,129,0.2)] pt-12 px-8 pb-8 mt-8;
   }

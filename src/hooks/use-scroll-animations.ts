@@ -3,71 +3,43 @@ import { useEffect } from 'react';
 
 export function useScrollAnimations() {
   useEffect(() => {
+    const animatedElements = document.querySelectorAll('.service-card, .process-step, .portfolio-card, .testimonial, .extended-stat, .mid-cta, .tech-card, .faq-container');
+
+    // Set initial state
+    animatedElements.forEach(el => {
+        (el as HTMLElement).style.opacity = '0';
+        (el as HTMLElement).style.transform = 'translateY(50px)';
+        (el as HTMLElement).style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+    });
+    
     // Intersection Observer for animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           const target = entry.target as HTMLElement;
-          target.classList.add('visible');
+          target.style.opacity = '1';
+          target.style.transform = 'translateY(0)';
+          
+          // Apply staggered delay for tech cards
           if (target.classList.contains('tech-card')) {
-            target.style.transitionDelay = `${index * 50}ms`;
+            const techCards = Array.from(document.querySelectorAll('.tech-card'));
+            const cardIndex = techCards.indexOf(target);
+            target.style.transitionDelay = `${cardIndex * 100}ms`;
           }
           
-          // Trigger counter animation
-          const counters = target.querySelectorAll('.counter');
-          counters.forEach(counter => {
-            const el = counter as HTMLElement;
-            if (!el.classList.contains('counted')) {
-              animateCounter(el);
-              el.classList.add('counted');
-            }
-          });
           observer.unobserve(target);
         }
       });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll(`
-        .section-heading, 
-        .service-card, 
-        .process-step, 
-        .portfolio-card, 
-        .testimonial, 
-        .extended-stat, 
-        .mid-cta,
-        .tech-card,
-        .faq-container
-    `);
-    
     animatedElements.forEach(el => {
       observer.observe(el);
     });
-
-    // Counter animation function
-    function animateCounter(counter: HTMLElement) {
-      const target = parseInt(counter.dataset.target || '0');
-      const duration = 2000;
-      let start = 0;
-      const stepTime = 16;
-      const totalSteps = duration / stepTime;
-      const increment = target / totalSteps;
-
-      const updateCounter = () => {
-        start += increment;
-        if (start < target) {
-          counter.textContent = Math.floor(start).toString();
-          requestAnimationFrame(updateCounter);
-        } else {
-          counter.textContent = target.toString();
-        }
-      };
-      updateCounter();
-    }
 
     // Smooth scroll for anchor links
     function setupSmoothScroll() {

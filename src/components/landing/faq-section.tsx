@@ -37,11 +37,12 @@ export function FaqSection() {
           title="Frequently Asked Questions"
           subtitle="Have questions? We have answers. Here are some of the most common questions we get."
         />
-        <div className="mt-12 faq-container opacity-0">
+        <div className="mt-12 faq-container">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={index}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
+
                 <AccordionContent>{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
