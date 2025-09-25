@@ -13,6 +13,8 @@ import { FinalCtaSection } from '@/components/landing/final-cta-section';
 import { Footer } from '@/components/landing/footer';
 import { Particles } from '@/components/landing/particles';
 import { useScrollAnimations } from '@/hooks/use-scroll-animations';
+import { TechStackSection } from '@/components/landing/tech-stack-section';
+import { FaqSection } from '@/components/landing/faq-section';
 
 export default function LandingPage() {
   useScrollAnimations();
@@ -20,15 +22,19 @@ export default function LandingPage() {
   return (
     <>
       <Particles />
+      <div className="global-bg"></div>
+
       <Header />
       <main>
         <HeroSection />
         <ServicesSection />
         <ProcessSection />
+        <TechStackSection />
         <PortfolioSection />
         <MidCtaSection />
         <TestimonialsSection />
         <StatsExtendedSection />
+        <FaqSection />
         <FinalCtaSection />
       </main>
       <Footer />

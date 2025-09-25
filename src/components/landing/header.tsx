@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { RippleButton } from './ripple-button';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,7 +10,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -22,14 +22,16 @@ export function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-  }
+  };
 
   const navLinks = [
     { href: '#home', label: 'Home' },
     { href: '#services', label: 'Services' },
     { href: '#process', label: 'Process' },
+    { href: '#tech-stack', label: 'Stack' },
     { href: '#portfolio', label: 'Portfolio' },
     { href: '#about', label: 'About' },
+    { href: '#faq', label: 'FAQ' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -37,53 +39,63 @@ export function Header() {
     <header
       id="header"
       className={cn(
-        'fixed top-0 w-full z-[1000] transition-all duration-300',
-        isScrolled
-          ? 'bg-[rgba(0,0,0,0.98)] shadow-[0_2px_20px_rgba(0,0,0,0.3)]'
-          : 'bg-[rgba(0,0,0,0.95)]',
-        'backdrop-blur-[20px] border-b border-[rgba(16,185,129,0.1)]'
+        'header fixed top-0 w-full z-[1000] transition-all duration-300',
+        isScrolled ? 'scrolled' : ''
       )}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 md:px-4">
-        <a href="#home" className="text-2xl font-bold text-primary transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+      <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8">
+        <a href="#home" className="logo text-2xl font-bold text-primary">
           AppShop
         </a>
 
         <nav
+          id="navMenu"
           className={cn(
-            'flex-col md:flex-row md:flex md:items-center md:gap-8',
-            'fixed top-[70px] left-0 right-0 p-8 md:p-0 md:static',
-            'bg-[rgba(0,0,0,0.98)] md:bg-transparent backdrop-blur-[20px] md:backdrop-blur-none',
-            'transition-all duration-300 md:transform-none md:opacity-100',
-            isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+            'nav-menu hidden md:flex items-center gap-8',
+            isMenuOpen && 'active'
           )}
         >
           {navLinks.map((link) => (
-             <a
-              key={link.href}
-              href={link.href}
-              onClick={closeMenu}
-              className="text-white no-underline font-medium relative transition-all duration-300 hover:text-primary after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary after:to-green-400 after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full block py-2 md:py-0"
-            >
+            <a key={link.href} href={link.href} className="nav-link" onClick={closeMenu}>
               {link.label}
             </a>
           ))}
         </nav>
 
-        <a href="#contact" className="hidden md:block bg-gradient-to-r from-primary to-green-800 text-white py-2 px-6 rounded-full no-underline font-semibold transition-all duration-300 border-2 border-transparent hover:-translate-y-0.5 hover:shadow-[0_10px_25px_rgba(16,185,129,0.3)] hover:border-green-400">
-          Get Started
-        </a>
+        <div className="hidden md:block">
+          <RippleButton href="#contact" className="header-cta">
+            Get Started
+          </RippleButton>
+        </div>
 
         <div
           id="mobileToggle"
-          className="flex-col cursor-pointer gap-1 md:hidden flex"
+          className={cn('mobile-menu-toggle md:hidden', isMenuOpen && 'active')}
           onClick={toggleMenu}
         >
-          <span className={cn('w-6 h-0.5 bg-primary rounded-sm transition-all duration-300', isMenuOpen && 'transform rotate-45 translate-y-1.5')}></span>
-          <span className={cn('w-6 h-0.5 bg-primary rounded-sm transition-all duration-300', isMenuOpen && 'opacity-0')}></span>
-          <span className={cn('w-6 h-0.5 bg-primary rounded-sm transition-all duration-300', isMenuOpen && 'transform -rotate-45 -translate-y-1.5')}></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
+       {/* Mobile Menu */}
+       <div className={cn('md:hidden', isMenuOpen ? 'block' : 'hidden')}>
+          <nav
+            className={cn(
+              'nav-menu active absolute top-[65px] left-0 right-0 bg-[rgba(0,0,0,0.98)] backdrop-blur-[20px]',
+              'flex flex-col items-center p-8 gap-4'
+            )}
+          >
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="nav-link" onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
+             <RippleButton href="#contact" className="header-cta mt-4">
+              Get Started
+            </RippleButton>
+          </nav>
+        </div>
     </header>
   );
 }
