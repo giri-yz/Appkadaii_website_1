@@ -1,36 +1,20 @@
 import React from 'react';
 import { SectionHeading } from './section-heading';
+import { Smartphone, BrainCircuit, Zap } from 'lucide-react';
 
 const services = [
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110">
-        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <Smartphone className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110" />,
     title: 'App Development',
     description: 'Build stunning mobile and web applications with modern frameworks. From concept to deployment, we handle the entire development lifecycle.',
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="7.5 4.21 12 6.81 16.5 4.21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="7.5 19.79 7.5 14.6 3 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="21 12 16.5 14.6 16.5 19.79" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="12 22.08 12 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <BrainCircuit className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110" />,
     title: 'AI Solutions',
     description: 'Harness the power of artificial intelligence for your business. Custom AI models, machine learning pipelines, and intelligent automation.',
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <Zap className="w-10 h-10 text-primary transition-all duration-300 group-hover:text-green-400 group-hover:scale-110" />,
     title: 'Hybrid Magic',
     description: 'Combine the best of both worlds with AI-powered applications. Smart features, predictive analytics, and intuitive user experiences.',
   },

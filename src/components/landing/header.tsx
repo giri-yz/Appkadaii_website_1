@@ -39,12 +39,12 @@ export function Header() {
     <header
       id="header"
       className={cn(
-        'header fixed top-0 w-full z-[1000] transition-all duration-300',
+        'header',
         isScrolled ? 'scrolled' : ''
       )}
     >
-      <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8">
-        <a href="#home" className="logo text-2xl font-bold text-primary">
+      <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 h-16">
+        <a href="#home" className="logo">
           AppShop
         </a>
 

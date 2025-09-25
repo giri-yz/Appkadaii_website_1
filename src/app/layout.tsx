@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,10 +31,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(inter.className, 'bg-black text-white overflow-x-hidden relative font-body')}>
-        <div className="global-bg"></div>
-        <main>
-          {children}
-        </main>
+        {children}
         <Toaster />
       </body>
     </html>

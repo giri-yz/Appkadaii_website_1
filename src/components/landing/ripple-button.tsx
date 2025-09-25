@@ -1,6 +1,5 @@
 'use client';
 import React, { MouseEvent } from 'react';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 interface RippleButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
