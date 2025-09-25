@@ -1,24 +1,16 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarInset,
-  SidebarHeader,
-  SidebarTrigger,
-  SidebarContent,
-  SidebarFooter,
-} from '@/components/ui/sidebar';
-import SidebarNav from '@/components/layout/sidebar-nav';
-import { Button } from '@/components/ui/button';
-import { Github, HandMetal } from 'lucide-react';
-import Link from 'next/link';
+import { Header } from '@/components/landing/header';
+import { Footer } from '@/components/landing/footer';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AppShack',
-  description: 'Your Ideal Shop for Applications',
+  title: 'AppShop - Your Ideal Shop for Applications',
+  description: 'We turn your ideas into apps, AI, or both—fast.',
 };
 
 export default function RootLayout({
@@ -40,40 +32,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={cn('font-body antialiased')}>
-        <SidebarProvider>
-          <Sidebar>
-            <SidebarHeader>
-              <Link href="/" className="flex items-center gap-2">
-                <HandMetal className="h-7 w-7 text-primary" />
-                <h2 className="text-xl font-headline font-semibold text-primary">
-                  AppShack
-                </h2>
-              </Link>
-            </SidebarHeader>
-            <SidebarContent>
-              <SidebarNav />
-            </SidebarContent>
-            <SidebarFooter>{/* Can add footer content here */}</SidebarFooter>
-          </Sidebar>
-          <SidebarInset>
-            <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-lg sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-              <SidebarTrigger className="sm:hidden" />
-              <div className="flex-1" />
-              <Button variant="ghost" size="icon" asChild>
-                <Link
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github />
-                  <span className="sr-only">GitHub</span>
-                </Link>
-              </Button>
-            </header>
-            {children}
-          </SidebarInset>
-        </SidebarProvider>
+      <body className={cn(inter.className, 'bg-black text-white overflow-x-hidden relative font-body')}>
+        <div className="global-bg"></div>
+        <main>
+          {children}
+        </main>
         <Toaster />
       </body>
     </html>
