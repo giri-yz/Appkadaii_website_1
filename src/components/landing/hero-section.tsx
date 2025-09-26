@@ -31,7 +31,7 @@ export function HeroSection() {
           className="text-[clamp(3.5rem,10vw,8rem)] font-bold tracking-[-0.02em] leading-[0.9] mb-6 text-white [text-shadow:0_4px_30px_rgba(0,0,0,0.3)]"
           style={{ animation: 'titleSlide 1s ease-out 0.3s both' }}
         >
-          Your Ideal Shop for <span className="highlight">Applications</span>
+          Your Ideal Shop for <span>Applications</span>
         </h1>
         <p
           className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-[rgba(255,255,255,0.9)] leading-normal max-w-3xl mx-auto"
