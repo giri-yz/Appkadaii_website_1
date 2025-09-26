@@ -3,10 +3,10 @@ import { RippleButton } from './ripple-button';
 
 export function FinalCtaSection() {
   return (
-    <section id="contact" className="py-16 px-8 text-center">
+    <section id="contact" className="py-24 px-8 text-center overflow-hidden">
       <div className="container max-w-4xl mx-auto">
         <h2
-          className="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-4"
+          className="text-[clamp(2.8rem,6vw,4.5rem)] font-bold mb-4"
           style={{
             background: 'linear-gradient(135deg, #ffffff 0%, #10b981 100%)',
             WebkitBackgroundClip: 'text',
