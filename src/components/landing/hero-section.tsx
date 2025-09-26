@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Counter } from './counter';
 import { RippleButton } from './ripple-button';
+import { Rocket, Workflow } from 'lucide-react';
 
 export function HeroSection() {
   const [keyword, setKeyword] = useState('apps');
@@ -20,7 +21,7 @@ export function HeroSection() {
     <section id="home" className="hero-section text-center pt-32" style={{ animation: 'dropdownEntry 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
       <div className="container max-w-7xl mx-auto">
         <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-bold tracking-[-0.02em] leading-[0.9] mb-6 text-white [text-shadow:0_4px_30px_rgba(0,0,0,0.3)]" style={{ animation: 'titleSlide 1s ease-out 0.3s both' }}>
-          Your Ideal Shop for <span className="highlight">Applications</span>
+          Your Ideal Shop for <span className="highlight" data-text="Applications">Applications</span>
         </h1>
         <p className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-[rgba(255,255,255,0.9)] leading-normal max-w-3xl mx-auto" style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}>
           We turn your ideas into {' '}
@@ -32,8 +33,14 @@ export function HeroSection() {
 
         <div className="flex flex-col items-center gap-6" style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}>
           <div className="flex gap-6 flex-wrap justify-center">
-            <RippleButton href="#services" className="cta-btn cta-secondary">Explore Our Stack</RippleButton>
-            <RippleButton href="#contact" className="cta-btn cta-primary">Build With Us</RippleButton>
+            <RippleButton href="#tech-stack" className="cta-btn cta-secondary">
+              <Workflow />
+              Explore Our Stack
+            </RippleButton>
+            <RippleButton href="#contact" className="cta-btn cta-primary">
+              <Rocket />
+              Build With Us
+            </RippleButton>
           </div>
 
           <div className="flex gap-8 mt-6 opacity-80 flex-wrap justify-center">

@@ -11,7 +11,6 @@ import {
 import { Smartphone, BrainCircuit, Zap } from 'lucide-react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { useScrollAnimations } from '@/hooks/use-scroll-animations';
 import { Particles } from '@/components/landing/particles';
 import { HeroSection } from '@/components/landing/hero-section';
 import { ServicesSection } from '@/components/landing/services-section';
@@ -27,7 +26,6 @@ import { FinalCtaSection } from '@/components/landing/final-cta-section';
 
 // MAIN PAGE COMPONENT
 export default function LandingPage() {
-  useScrollAnimations();
 
   return (
     <>
