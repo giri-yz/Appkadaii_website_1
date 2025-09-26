@@ -223,9 +223,18 @@
   }
 
   .highlight {
-    color: theme('colors.primary.DEFAULT');
-    position: relative;
-    animation: neon-glow 6s ease-in-out infinite;
+    background: linear-gradient(
+      100deg,
+      #34d399 10%,
+      theme('colors.primary.DEFAULT') 50%,
+      #34d399 90%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
   }
 }
 
@@ -356,18 +365,9 @@
     }
   }
 
-  @keyframes neon-glow {
-    0%, 100% {
-      text-shadow:
-        0 0 2px theme('colors.primary.DEFAULT'),
-        0 0 5px theme('colors.primary.DEFAULT'),
-        0 0 10px theme('colors.primary.DEFAULT');
-    }
-    50% {
-      text-shadow:
-        0 0 5px theme('colors.primary.DEFAULT'),
-        0 0 10px theme('colors.primary.DEFAULT'),
-        0 0 20px theme('colors.primary.DEFAULT');
+  @keyframes shimmer {
+    to {
+      background-position: -200% center;
     }
   }
 }
