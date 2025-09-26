@@ -63,10 +63,10 @@ export function HeroSection() {
               style={{ animation: 'statPop 0.6s ease-out 1.2s both' }}
             >
               <span className="block text-3xl font-bold text-primary mb-1">
-                <Counter target={10} />x
+                <Counter target={3} />x
               </span>
               <span className="text-sm text-[rgba(255,255,255,0.7)]">
-                Faster Delivery
+                Faster & Cheaper
               </span>
             </div>
             <div
@@ -74,10 +74,10 @@ export function HeroSection() {
               style={{ animation: 'statPop 0.6s ease-out 1.4s both' }}
             >
               <span className="block text-3xl font-bold text-primary mb-1">
-                <Counter target={99.9} decimals={1} />%
+                <Counter target={100} />+
               </span>
               <span className="text-sm text-[rgba(255,255,255,0.7)]">
-                Uptime SLA
+                Happy Clients
               </span>
             </div>
             <div

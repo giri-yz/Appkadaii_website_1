@@ -19,7 +19,6 @@ import { TechStackSection } from '@/components/landing/tech-stack-section';
 import { PortfolioSection } from '@/components/landing/portfolio-section';
 import { MidCtaSection } from '@/components/landing/mid-cta-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
-import { StatsExtendedSection } from '@/components/landing/stats-extended-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { FinalCtaSection } from '@/components/landing/final-cta-section';
 
@@ -41,7 +40,6 @@ export default function LandingPage() {
         <PortfolioSection />
         <MidCtaSection />
         <TestimonialsSection />
-        <StatsExtendedSection />
         <FaqSection />
         <FinalCtaSection />
       </main>
