@@ -22,7 +22,7 @@ export function MidCtaSection() {
               href="#contact"
               className="cta-btn cta-primary text-lg font-bold"
             >
-              🔥 Start Your Project
+              Start Your Project
             </RippleButton>
           </div>
           <p className="text-sm text-[rgba(255,255,255,0.6)] mt-8" style={{ animation: 'subtitleFade 1.2s ease-out 1.2s both' }}>

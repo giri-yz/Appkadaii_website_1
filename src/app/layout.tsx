@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AppShop - Your Ideal Shop for Applications',
+  title: 'App kadaii - Your Ideal Shop for Applications',
   description: 'We turn your ideas into apps, AI, or both—fast.',
 };
 

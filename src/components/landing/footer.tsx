@@ -26,7 +26,7 @@ export function Footer() {
 
   const contactLinks = [
     { href: '#contact', label: 'Contact Us' },
-    { href: 'mailto:hello@appshop.com', label: 'hello@appshop.com' },
+    { href: 'mailto:hello@appkadaii.com', label: 'hello@appkadaii.com' },
     { href: 'tel:+1-555-0123', label: '+1 (555) 012-3456' },
     { href: '#contact', label: 'Schedule a Call' },
     { href: '#contact', label: 'Support' },
@@ -38,7 +38,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div className="footer-section">
-            <h3 className="text-primary text-lg font-semibold mb-4">AppShop</h3>
+            <h3 className="text-primary text-lg font-semibold mb-4">App kadaii</h3>
             <p className="text-[rgba(255,255,255,0.8)] leading-relaxed mb-4">
               Your ideal partner for transforming ideas into powerful applications.
             </p>
@@ -76,7 +76,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-[rgba(16,185,129,0.1)] pt-8 text-center text-[rgba(255,255,255,0.6)]">
-          <p>&copy; {new Date().getFullYear()} AppShop. All rights reserved. | Privacy Policy | Terms of Service</p>
+          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
       </div>
     </footer>
