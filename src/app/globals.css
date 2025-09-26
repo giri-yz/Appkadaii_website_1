@@ -355,11 +355,17 @@
   }
 
   @keyframes marquee-scroll {
-    0% {
-      transform: translateY(0);
+    0%, 28% {
+      transform: translateY(0); /* apps */
+    }
+    33%, 61% {
+      transform: translateY(-1.5em); /* AI */
+    }
+    66%, 94% {
+      transform: translateY(-3em); /* both */
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateY(-4.5em); /* back to apps */
     }
   }
 }

@@ -5,7 +5,7 @@ import { RippleButton } from './ripple-button';
 import { Rocket, Workflow } from 'lucide-react';
 
 export function HeroSection() {
-  const keywords = ['apps', 'AI', 'both', 'apps', 'AI', 'both'];
+  const keywords = ['apps', 'AI', 'both', 'apps'];
 
   return (
     <section
