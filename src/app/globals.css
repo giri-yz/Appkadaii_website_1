@@ -209,7 +209,7 @@
   }
 
   [data-radix-accordion-content] {
-    @apply overflow-hidden text-base transition-all text-[rgba(255,255,255,0.8)];
+    @apply overflow-hidden text-base transition-all text-[rgba(2-55,255,255,0.8)];
   }
   [data-radix-accordion-content][data-state='open'] {
     @apply animate-accordion-down;
@@ -223,18 +223,20 @@
   }
 
   .highlight {
+    --bg-size: 400%;
+    --color-one: hsl(158 80% 39%);
+    --color-two: hsl(158 80% 39% / 0.7);
     background: linear-gradient(
-      100deg,
-      hsl(158 80% 39%) 20%,
-      #a7f3d0 50%,
-      hsl(158 80% 39%) 80%
-    );
-    background-size: 200% auto;
+        90deg,
+        var(--color-one),
+        var(--color-two),
+        var(--color-one)
+      )
+      0 0 / var(--bg-size) 100%;
     color: transparent;
-    background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
+    background-clip: text;
+    animation: shimmer 5s infinite linear;
   }
 }
 
@@ -367,7 +369,7 @@
 
   @keyframes shimmer {
     to {
-      background-position: -200% center;
+      background-position: var(--bg-size) 0;
     }
   }
 }
