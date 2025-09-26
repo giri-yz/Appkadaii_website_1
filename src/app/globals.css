@@ -225,16 +225,16 @@
   .highlight {
     background: linear-gradient(
       100deg,
-      #34d399 10%,
-      theme('colors.primary.DEFAULT') 50%,
-      #34d399 90%
+      hsl(158 80% 39%) 20%,
+      #a7f3d0 50%,
+      hsl(158 80% 39%) 80%
     );
     background-size: 200% auto;
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 4s linear infinite;
+    animation: shimmer 3s linear infinite;
   }
 }
 
