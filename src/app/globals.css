@@ -353,4 +353,13 @@
         inset 0 2px 5px rgba(255, 255, 255, 0.2);
     }
   }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
 }

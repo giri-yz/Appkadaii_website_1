@@ -5,17 +5,7 @@ import { RippleButton } from './ripple-button';
 import { Rocket, Workflow } from 'lucide-react';
 
 export function HeroSection() {
-  const [keyword, setKeyword] = useState('apps');
-
-  useEffect(() => {
-    const keywords = ['apps', 'AI', 'both'];
-    let i = 0;
-    const interval = setInterval(() => {
-      i = (i + 1) % keywords.length;
-      setKeyword(keywords[i]);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  const keywords = ['apps', 'AI', 'both', 'apps', 'AI', 'both'];
 
   return (
     <section
@@ -34,16 +24,22 @@ export function HeroSection() {
           Your Ideal Shop for <span className="text-primary">Applications</span>
         </h1>
         <p
-          className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-[rgba(255,255,255,0.9)] leading-normal max-w-3xl mx-auto"
+          className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-[rgba(255,255,255,0.9)] leading-normal max-w-3xl mx-auto flex items-center justify-center gap-2"
           style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
         >
-          We turn your ideas into{' '}
-          <span
-            className={`font-semibold inline-block transition-all duration-500 text-primary [text-shadow:0_0_20px_rgba(16,185,129,0.5)]`}
-          >
-            {keyword}
+          <span>We turn your ideas into</span>
+          <span className="inline-block h-[1.5em] overflow-hidden align-middle">
+            <span
+              className="inline-block animate-[marquee-scroll_6s_ease-in-out_infinite] text-primary [text-shadow:0_0_20px_rgba(16,185,129,0.5)]"
+            >
+              {keywords.map((word, index) => (
+                <span key={index} className="block h-[1.5em] text-center font-semibold">
+                  {word}
+                </span>
+              ))}
+            </span>
           </span>
-          —fast.
+          <span>—fast.</span>
         </p>
 
         <div
