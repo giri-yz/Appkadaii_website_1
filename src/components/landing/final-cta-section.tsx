@@ -12,6 +12,7 @@ export function FinalCtaSection() {
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            animation: 'titleSlide 1s ease-out 0.3s both'
           }}
         >
           Let’s Build Something{' '}
@@ -19,11 +20,17 @@ export function FinalCtaSection() {
             Amazing Together
           </span>
         </h2>
-        <p className="text-lg text-[rgba(255,255,255,0.8)] max-w-2xl mx-auto mb-10">
+        <p 
+          className="text-lg text-[rgba(255,255,255,0.8)] max-w-2xl mx-auto mb-10"
+          style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
+        >
           From vision to execution — we craft digital solutions engineered to
           grow with your business.
         </p>
-        <div className="flex gap-6 flex-wrap justify-center animate-fade-in-up animation-delay-300">
+        <div 
+          className="flex gap-6 flex-wrap justify-center"
+          style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}
+          >
           <RippleButton
             href="#"
             className="cta-btn cta-secondary text-base font-semibold"
