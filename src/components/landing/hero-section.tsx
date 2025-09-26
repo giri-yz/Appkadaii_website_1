@@ -28,17 +28,17 @@ export function HeroSection() {
           style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
         >
           <span>We turn your ideas into</span>
-          <span className="inline-block h-[1.5em] overflow-hidden align-middle">
-            <span
+          <div className="inline-block h-[1.5em] overflow-hidden align-middle">
+            <div
               className="inline-block animate-[marquee-scroll_6s_ease-in-out_infinite] text-primary [text-shadow:0_0_20px_rgba(16,185,129,0.5)]"
             >
               {keywords.map((word, index) => (
-                <span key={index} className="block h-[1.5em] text-center font-semibold">
+                <div key={index} className="block h-[1.5em] text-center font-semibold">
                   {word}
-                </span>
+                </div>
               ))}
-            </span>
-          </span>
+            </div>
+          </div>
           <span>—fast.</span>
         </p>
 
@@ -66,7 +66,7 @@ export function HeroSection() {
                 <Counter target={3} />x
               </span>
               <span className="text-sm text-[rgba(255,255,255,0.7)]">
-                Faster & Cheaper
+                Faster
               </span>
             </div>
             <div
