@@ -40,7 +40,7 @@ export function Footer() {
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">AppShop</h3>
             <p className="text-[rgba(255,255,255,0.8)] leading-relaxed mb-4">
-              Your ideal partner for transforming ideas into powerful applications. We combine cutting-edge technology with creative solutions to deliver exceptional results.
+              Your ideal partner for transforming ideas into powerful applications.
             </p>
             <div className="flex gap-4 mt-4">
               {socialLinks.map((link, index) => (

@@ -19,7 +19,7 @@ export function TechStackSection() {
           title="Our Technology Stack"
           subtitle="We use the best and latest technologies to build high-quality, scalable solutions."
         />
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {technologies.map((tech, index) => (
             <div
               key={tech.name}
