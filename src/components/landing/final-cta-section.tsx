@@ -32,7 +32,7 @@ export function FinalCtaSection() {
           style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}
           >
           <RippleButton
-            href="/contact"
+            href="/book-a-call"
             className="cta-btn cta-secondary text-base font-semibold"
           >
             📞 Book a Call

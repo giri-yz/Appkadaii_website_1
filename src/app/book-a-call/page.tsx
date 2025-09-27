@@ -4,9 +4,9 @@ import React from 'react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Particles } from '@/components/landing/particles';
-import { ContactForm } from '@/components/landing/contact-form';
+import { BookingForm } from '@/components/landing/booking-form';
 
-export default function ContactPage() {
+export default function BookACallPage() {
   return (
     <>
       <Particles />
@@ -14,7 +14,7 @@ export default function ContactPage() {
 
       <Header />
       <main>
-        <ContactForm />
+        <BookingForm />
       </main>
       <Footer />
     </>
