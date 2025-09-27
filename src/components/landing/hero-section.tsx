@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Counter } from './counter';
 import { RippleButton } from './ripple-button';
 import { Rocket, Workflow } from 'lucide-react';
@@ -47,11 +47,11 @@ export function HeroSection() {
           style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}
         >
           <div className="flex gap-6 flex-wrap justify-center">
-            <RippleButton href="#tech-stack" className="cta-btn cta-secondary">
+            <RippleButton href="/tech-stack" className="cta-btn cta-secondary">
               <Workflow />
               Explore Our Stack
             </RippleButton>
-            <RippleButton href="#contact" className="cta-btn cta-primary">
+            <RippleButton href="/contact" className="cta-btn cta-primary">
               <Rocket />
               Build With Us
             </RippleButton>

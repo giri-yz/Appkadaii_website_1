@@ -4,12 +4,9 @@ import React from 'react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Particles } from '@/components/landing/particles';
-import { HeroSection } from '@/components/landing/hero-section';
-import { MidCtaSection } from '@/components/landing/mid-cta-section';
-import { FinalCtaSection } from '@/components/landing/final-cta-section';
+import { TechStackSection } from '@/components/landing/tech-stack-section';
 
-// MAIN PAGE COMPONENT
-export default function LandingPage() {
+export default function TechStackPage() {
   return (
     <>
       <Particles />
@@ -17,9 +14,7 @@ export default function LandingPage() {
 
       <Header />
       <main>
-        <HeroSection />
-        <MidCtaSection />
-        <FinalCtaSection />
+        <TechStackSection />
       </main>
       <Footer />
     </>

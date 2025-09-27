@@ -25,14 +25,14 @@ export function Header() {
   };
 
   const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#services', label: 'Services' },
-    { href: '#process', label: 'Process' },
-    { href: '#tech-stack', label: 'Stack' },
-    { href: '#portfolio', label: 'Portfolio' },
-    { href: '#about', label: 'About' },
-    { href: '#faq', label: 'FAQ' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/process', label: 'Process' },
+    { href: '/tech-stack', label: 'Stack' },
+    { href: '/portfolio', label: 'Portfolio' },
+    { href: '/about', label: 'About' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -44,7 +44,7 @@ export function Header() {
       )}
     >
       <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 h-16">
-        <a href="#home" className="logo">
+        <a href="/" className="logo">
           App kadaii
         </a>
 
@@ -63,7 +63,7 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <RippleButton href="#contact" className="header-cta">
+          <RippleButton href="/contact" className="header-cta">
             Get Started
           </RippleButton>
         </div>
@@ -91,7 +91,7 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-             <RippleButton href="#contact" className="header-cta mt-4">
+             <RippleButton href="/contact" className="header-cta mt-4">
               Get Started
             </RippleButton>
           </nav>

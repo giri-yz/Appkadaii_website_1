@@ -19,7 +19,7 @@ export function MidCtaSection() {
           </p>
           <div style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}>
             <RippleButton
-              href="#contact"
+              href="/contact"
               className="cta-btn cta-primary text-lg font-bold"
             >
               Start Your Project

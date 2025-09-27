@@ -4,12 +4,9 @@ import React from 'react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Particles } from '@/components/landing/particles';
-import { HeroSection } from '@/components/landing/hero-section';
-import { MidCtaSection } from '@/components/landing/mid-cta-section';
-import { FinalCtaSection } from '@/components/landing/final-cta-section';
+import { ProcessSection } from '@/components/landing/process-section';
 
-// MAIN PAGE COMPONENT
-export default function LandingPage() {
+export default function ProcessPage() {
   return (
     <>
       <Particles />
@@ -17,9 +14,7 @@ export default function LandingPage() {
 
       <Header />
       <main>
-        <HeroSection />
-        <MidCtaSection />
-        <FinalCtaSection />
+        <ProcessSection />
       </main>
       <Footer />
     </>
