@@ -28,8 +28,8 @@ export function TechStackSection() {
           {technologies.map((tech, index) => (
             <div
               key={tech.name}
-              className="tech-card flex flex-col items-center justify-center gap-4 p-4 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-transparent transition-all duration-300 hover:border-[rgba(16,185,129,0.5)] hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(16,185,129,0.2)] animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="tech-card flex flex-col items-center justify-center gap-4 p-4 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-transparent transition-all duration-300 hover:border-[rgba(16,185,129,0.5)] hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(16,185,129,0.2)]"
+              style={{ animation: `drop-in 1s ease-out ${index * 100}ms both` }}
             >
               <img src={tech.icon} alt={tech.name} className="w-16 h-16 object-contain" />
               <p className="font-semibold text-center text-white">{tech.name}</p>
@@ -37,6 +37,25 @@ export function TechStackSection() {
           ))}
         </div>
       </div>
+       <style jsx>{`
+        @keyframes drop-in {
+          0% {
+            opacity: 0;
+            transform: translateY(-100px) scale(0.8);
+          }
+          60% {
+            opacity: 1;
+            transform: translateY(10px) scale(1.05);
+          }
+          80% {
+            transform: translateY(-5px) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
     </section>
   );
 }
