@@ -1,4 +1,3 @@
-// 'use server'
 'use server';
 
 /**
@@ -19,19 +18,16 @@ const AppRecommendationsInputSchema = z.object({
 });
 export type AppRecommendationsInput = z.infer<typeof AppRecommendationsInputSchema>;
 
-const AppRecommendationSchema = z.object({
-  optionName: z.string().describe('The name of the app development option.'),
-  tools: z.array(z.string()).describe('A list of specific development tools needed for this option.'),
-  reasoning: z
-    .string()
-    .describe(
-      'The reasoning behind recommending these tools, including their benefits and how they help achieve the user goals.'
-    ),
+const AppRecommendationsOutputSchema = z.object({
+  suggestedAppName: z.string().describe("A creative and catchy name for the app concept."),
+  appSummary: z.string().describe("A brief, engaging summary of the core app concept and its value proposition."),
+  suggestedFeatures: z.array(z.object({
+    featureName: z.string().describe("The name of the feature."),
+    description: z.string().describe("A user-focused description of what the feature does and why it's valuable."),
+  })).describe("A list of key features that would make the app successful."),
+  nextStep: z.string().describe("A concluding paragraph encouraging the user to contact 'App kadaii' to discuss building the app with these features."),
 });
 
-const AppRecommendationsOutputSchema = z.object({
-  recommendations: z.array(AppRecommendationSchema).describe('A list of app development recommendations.'),
-});
 
 export type AppRecommendationsOutput = z.infer<typeof AppRecommendationsOutputSchema>;
 
@@ -43,9 +39,18 @@ const prompt = ai.definePrompt({
   name: 'appRecommendationPrompt',
   input: {schema: AppRecommendationsInputSchema},
   output: {schema: AppRecommendationsOutputSchema},
-  prompt: `You are an AI-powered app development expert. A user will provide their goals for an app development project, and you will provide a list of app development options with the specific development tools they need and the reasoning behind them.  The response must conform to the JSON schema {{$outputSchema}}.
+  prompt: `You are a creative product strategist for a software development agency called "App kadaii". A potential client has submitted their app idea. Your goal is to get them excited about their idea and encourage them to work with your company.
 
-User Goals: {{{userGoals}}}`,
+Instead of providing technical details, you will brainstorm high-level product features for their app.
+
+Your response must conform to the JSON schema, and should be engaging, creative, and customer-focused.
+
+- Give the app a creative name.
+- Write a short, exciting summary of the app concept.
+- Suggest 3-4 key features, explaining what they do from a user's perspective.
+- End with a strong "Next Step" that tells the user to contact "App kadaii" to bring their vision to life.
+
+User's Idea: {{{userGoals}}}`,
 });
 
 const appRecommendationFlow = ai.defineFlow(
