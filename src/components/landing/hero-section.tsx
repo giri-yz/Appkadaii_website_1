@@ -47,7 +47,7 @@ export function HeroSection() {
           style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}
         >
           <div className="flex gap-6 flex-wrap justify-center">
-            <RippleButton href="/tech-stack" className="cta-btn cta-secondary">
+            <RippleButton href="/#tech-stack" className="cta-btn cta-secondary">
               <Workflow />
               Explore Our Stack
             </RippleButton>

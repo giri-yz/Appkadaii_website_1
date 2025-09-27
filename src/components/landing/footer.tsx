@@ -9,17 +9,17 @@ export function Footer() {
   ];
 
   const serviceLinks = [
-    { href: '/services', label: 'Mobile App Development' },
-    { href: '/services', label: 'Web Applications' },
-    { href: '/services', label: 'AI Solutions' },
-    { href: '/services', label: 'Custom Software' },
-    { href: '/services', label: 'Consulting' },
+    { href: '/#services', label: 'Mobile App Development' },
+    { href: '/#services', label: 'Web Applications' },
+    { href: '/#services', label: 'AI Solutions' },
+    { href: '/#services', label: 'Custom Software' },
+    { href: '/#services', label: 'Consulting' },
   ];
   
   const companyLinks = [
-    { href: '/about', label: 'About Us' },
-    { href: '/portfolio', label: 'Our Work' },
-    { href: '/process', label: 'Process' },
+    { href: '/#about', label: 'About Us' },
+    { href: '/#portfolio', label: 'Our Work' },
+    { href: '/#process', label: 'Process' },
     { href: '/contact', label: 'Careers' },
     { href: '#', label: 'Blog' },
   ];

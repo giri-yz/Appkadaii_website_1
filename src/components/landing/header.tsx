@@ -25,13 +25,13 @@ export function Header() {
   };
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/process', label: 'Process' },
-    { href: '/tech-stack', label: 'Stack' },
-    { href: '/portfolio', label: 'Portfolio' },
-    { href: '/about', label: 'About' },
-    { href: '/faq', label: 'FAQ' },
+    { href: '/#home', label: 'Home' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#process', label: 'Process' },
+    { href: '/#tech-stack', label: 'Stack' },
+    { href: '/#portfolio', label: 'Portfolio' },
+    { href: '/#about', label: 'About' },
+    { href: '/#faq', label: 'FAQ' },
     { href: '/contact', label: 'Contact' },
   ];
 
