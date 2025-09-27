@@ -23,7 +23,7 @@ export function HeroSection() {
         >
           Your Ideal Shop for <span className="text-primary">Applications</span>
         </h1>
-        <p
+        <div
           className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-[rgba(255,255,255,0.9)] leading-normal max-w-3xl mx-auto flex items-center justify-center gap-2"
           style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
         >
@@ -40,7 +40,7 @@ export function HeroSection() {
             </div>
           </div>
           <span>—fast.</span>
-        </p>
+        </div>
 
         <div
           className="flex flex-col items-center gap-6"
