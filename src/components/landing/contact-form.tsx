@@ -36,6 +36,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from '../ui/checkbox';
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name is required.' }),
@@ -366,28 +367,20 @@ export function ContactForm({ formType }: ContactFormProps) {
                                 className="flex flex-row items-start space-x-3 space-y-0"
                               >
                                 <FormControl>
-                                  <input
-                                    type="checkbox"
-                                    className="hidden"
-                                    id={item.id}
+                                  <Checkbox
                                     checked={field.value?.includes(item.id)}
-                                    onChange={(e) => {
-                                      const newValues = e.target.checked
-                                        ? [...(field.value || []), item.id]
-                                        : (field.value || []).filter(
-                                            (value) => value !== item.id
-                                          );
-                                      field.onChange(newValues);
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...(field.value || []), item.id])
+                                        : field.onChange(
+                                            (field.value || []).filter(
+                                              (value) => value !== item.id
+                                            )
+                                          )
                                     }}
                                   />
                                 </FormControl>
-                                <FormLabel
-                                  htmlFor={item.id}
-                                  className={cn(
-                                    "flex items-center justify-center w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background has-[:checked]:bg-primary has-[:checked]:text-primary-foreground cursor-pointer",
-                                    field.value?.includes(item.id) && "bg-primary text-primary-foreground"
-                                  )}
-                                >
+                                <FormLabel className="font-normal">
                                   {item.label}
                                 </FormLabel>
                               </FormItem>
