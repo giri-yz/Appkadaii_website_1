@@ -50,9 +50,6 @@ const formSchema = z.object({
   contactMethod: z
     .string({ required_error: 'Please select a contact method.' }),
   notes: z.string().optional(),
-  confirm: z.boolean().refine((val) => val === true, {
-    message: 'You must confirm the details.',
-  }),
 });
 
 // These entry IDs are from your Google Form.
@@ -101,7 +98,7 @@ export default function ContactPage() {
     formData.append(PURPOSE_ID, values.purpose);
     formData.append(CONTACT_METHOD_ID, values.contactMethod);
     formData.append(NOTES_ID, values.notes || '');
-    formData.append(CONFIRM_ID, values.confirm ? 'Yes' : 'No');
+    formData.append(CONFIRM_ID, 'Yes'); // Automatically confirm
 
     try {
       await fetch(GOOGLE_FORM_ACTION_URL, {
@@ -366,27 +363,6 @@ export default function ContactPage() {
                               {...field}
                             />
                           </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="confirm"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-background/50">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                          <div className="space-y-1 leading-none">
-                            <FormLabel>
-                              I agree to be contacted via the methods provided.
-                            </FormLabel>
-                          </div>
                           <FormMessage />
                         </FormItem>
                       )}
