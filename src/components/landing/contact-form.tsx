@@ -55,7 +55,6 @@ const formSchema = z.object({
 // These entry IDs are from your new Google Form.
 const GOOGLE_FORM_ACTION_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSfVqsdpzS5O4YqCuxx_NlXWxEcWU2e6xQuily5oAb_JJMYYEA/formResponse';
-
 const HIDDEN_EMAIL_ID = 'entry.618588388';
 const FULL_NAME_ID = 'entry.1948634153';
 const EMAIL_ID = 'entry.2075370401';
@@ -64,13 +63,13 @@ const DATE_ID = 'entry.1216755856';
 const TIME_ID = 'entry.1027392810';
 const PURPOSE_ID = 'entry.1480777819';
 const CONTACT_METHOD_ID = 'entry.183810773';
+const NOTES_ID = 'entry.622054705';
 const REFERRAL_SOURCE_ID = 'entry.700209598';
-const NOTES_ID = 'entry.236791353'; // Re-using old notes ID for the new confirmation.
 const CONFIRM_ID = 'entry.236791353';
 
 const contactMethods = [
   { id: 'Email', label: 'Email' },
-  { id: 'Phone', label: 'Phone' },
+  { id: 'Phone Call', label: 'Phone Call' },
   { id: 'Whatsapp', label: 'Whatsapp' },
   { id: 'Video Conference', label: 'Video Conference' },
 ] as const;
@@ -154,17 +153,6 @@ export function ContactForm({ formType }: ContactFormProps) {
       setIsSubmitting(false);
     }
   }
-
-  const timeSlots = [
-    { value: '09:00', label: '09:00 AM - 10:00 AM' },
-    { value: '10:00', label: '10:00 AM - 11:00 AM' },
-    { value: '11:00', label: '11:00 AM - 12:00 PM' },
-    { value: '12:00', label: '12:00 PM - 01:00 PM' },
-    { value: '13:00', label: '01:00 PM - 02:00 PM' },
-    { value: '14:00', label: '02:00 PM - 03:00 PM' },
-    { value: '15:00', label: '03:00 PM - 04:00 PM' },
-    { value: '16:00', label: '04:00 PM - 05:00 PM' },
-  ];
 
   const pageDetails = {
     appointment: {
@@ -407,10 +395,10 @@ export function ContactForm({ formType }: ContactFormProps) {
                       >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="Online Advertisement" />
+                            <RadioGroupItem value="Search Engine (Google, Bing, etc.)" />
                           </FormControl>
                           <FormLabel className="font-normal">
-                            Online Advertisement
+                            Search Engine
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
@@ -475,3 +463,5 @@ export function ContactForm({ formType }: ContactFormProps) {
     </section>
   );
 }
+
+    
