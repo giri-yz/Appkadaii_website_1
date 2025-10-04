@@ -43,7 +43,7 @@ const formSchema = z.object({
   email: z.string().email({ message: 'A valid email is required.' }),
   phone: z.string().min(10, { message: 'A valid phone number is required.' }),
   date: z.date({ required_error: 'Please select a date.' }),
-  time: z.string({ required_error: 'Please select a time slot.' }),
+  time: z.string().optional(),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
   contactMethod: z
     .array(z.string())
@@ -77,7 +77,7 @@ export function ContactForm({ formType }: ContactFormProps) {
       phone: '',
       notes: '',
       contactMethod: [],
-      date: undefined,
+      date: new Date(),
       time: '',
       purpose: '',
       referralSource: '',
