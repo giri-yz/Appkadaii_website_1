@@ -93,7 +93,7 @@ export function ContactForm({ formType }: ContactFormProps) {
       contactMethod: [],
       date: undefined,
       time: '',
-      purpose: undefined,
+      purpose: '',
       referralSource: '',
     },
   });
