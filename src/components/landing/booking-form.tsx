@@ -292,7 +292,7 @@ export function BookingForm() {
                     <FormItem>
                       <FormLabel>Preferred Contact Method</FormLabel>
                       <Select
-                        onValue-change={field.onChange}
+                        onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
                         <FormControl>
