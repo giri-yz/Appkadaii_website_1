@@ -463,5 +463,3 @@ export function ContactForm({ formType }: ContactFormProps) {
     </section>
   );
 }
-
-    
