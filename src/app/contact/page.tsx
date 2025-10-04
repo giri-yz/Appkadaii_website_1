@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -31,8 +30,15 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar as CalendarIcon, Send } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import { Header } from '@/components/landing/header';
+import { Footer } from '@/components/landing/footer';
+import { Particles } from '@/components/landing/particles';
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name is required.' }),
@@ -41,7 +47,8 @@ const formSchema = z.object({
   date: z.date({ required_error: 'Please select a date.' }),
   time: z.string({ required_error: 'Please select a time slot.' }),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
-  contactMethod: z.string({ required_error: 'Please select a contact method.' }),
+  contactMethod: z
+    .string({ required_error: 'Please select a contact method.' }),
   notes: z.string().optional(),
   confirm: z.boolean().refine((val) => val === true, {
     message: 'You must confirm the details.',
@@ -97,7 +104,7 @@ export default function ContactPage() {
     formData.append(CONFIRM_ID, values.confirm ? 'Yes' : 'No');
 
     try {
-       await fetch(GOOGLE_FORM_ACTION_URL, {
+      await fetch(GOOGLE_FORM_ACTION_URL, {
         method: 'POST',
         body: formData,
         mode: 'no-cors', // Important: 'no-cors' mode is required for this to work.
@@ -134,244 +141,273 @@ export default function ContactPage() {
   ];
 
   return (
-    <section id="contact-form" className="py-16 px-8">
-      <div className="container max-w-2xl mx-auto">
-        <SectionHeading
-          title="Get in Touch"
-          subtitle="Have a project in mind or just want to say hi? Fill out the form below and we'll get back to you."
-        />
-        <Card className="mt-12 bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">
-              Contact Us
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="fullName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-transparent"/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email Address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="you@example.com" {...field} className="bg-transparent"/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                 <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+1 (555) 123-4567" {...field} className="bg-transparent"/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="date"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col">
-                        <FormLabel>Preferred Date</FormLabel>
-                        <Popover>
-                          <PopoverTrigger asChild>
+    <>
+      <Particles />
+      <div className="global-bg"></div>
+      <Header />
+      <main>
+        <section id="contact-form" className="py-16 px-8">
+          <div className="container max-w-2xl mx-auto">
+            <SectionHeading
+              title="Get in Touch"
+              subtitle="Have a project in mind or just want to say hi? Fill out the form below and we'll get back to you."
+            />
+            <Card className="mt-12 bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-white">
+                  Contact Us
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-8"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="fullName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                              <Button
-                                variant={'outline'}
-                                className={cn(
-                                  'w-full justify-start text-left font-normal bg-transparent',
-                                  !field.value && 'text-muted-foreground'
-                                )}
-                              >
-                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? (
-                                  format(field.value, 'PPP')
-                                ) : (
-                                  <span>Pick a date</span>
-                                )}
-                              </Button>
+                              <Input
+                                placeholder="John Doe"
+                                {...field}
+                                className="bg-transparent"
+                              />
                             </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                              mode="single"
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date) =>
-                                date < new Date() || date < new Date('1900-01-01')
-                              }
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="time"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Preferred Time</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="you@example.com"
+                                {...field}
+                                className="bg-transparent"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone Number</FormLabel>
                           <FormControl>
-                            <SelectTrigger className="bg-transparent">
-                              <SelectValue placeholder="Select a time slot" />
-                            </SelectTrigger>
+                            <Input
+                              placeholder="+1 (555) 123-4567"
+                              {...field}
+                              className="bg-transparent"
+                            />
                           </FormControl>
-                          <SelectContent>
-                            {timeSlots.map((slot) => (
-                              <SelectItem key={slot.value} value={slot.value}>
-                                {slot.label}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="date"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <FormLabel>Preferred Date</FormLabel>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant={'outline'}
+                                    className={cn(
+                                      'w-full justify-start text-left font-normal bg-transparent',
+                                      !field.value && 'text-muted-foreground'
+                                    )}
+                                  >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {field.value ? (
+                                      format(field.value, 'PPP')
+                                    ) : (
+                                      <span>Pick a date</span>
+                                    )}
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  disabled={(date) =>
+                                    date < new Date() ||
+                                    date < new Date('1900-01-01')
+                                  }
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="time"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Preferred Time</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger className="bg-transparent">
+                                  <SelectValue placeholder="Select a time slot" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {timeSlots.map((slot) => (
+                                  <SelectItem
+                                    key={slot.value}
+                                    value={slot.value}
+                                  >
+                                    {slot.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="purpose"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Purpose of Contact</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="bg-transparent">
+                                <SelectValue placeholder="What's this about?" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="Consultation">
+                                Consultation
                               </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                              <SelectItem value="Demo">Demo</SelectItem>
+                              <SelectItem value="Support">Support</SelectItem>
+                              <SelectItem value="Follow-up Appointment">
+                                Follow-up Appointment
+                              </SelectItem>
+                              <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="purpose"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Purpose of Contact</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="bg-transparent">
-                            <SelectValue placeholder="What's this about?" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Consultation">
-                            Consultation
-                          </SelectItem>
-                          <SelectItem value="Demo">Demo</SelectItem>
-                          <SelectItem value="Support">Support</SelectItem>
-                           <SelectItem value="Follow-up Appointment">Follow-up Appointment</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name="contactMethod"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Preferred Contact Method</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="bg-transparent">
+                                <SelectValue placeholder="How should we contact you?" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="Phone">Phone</SelectItem>
+                              <SelectItem value="Email">Email</SelectItem>
+                              <SelectItem value="WhatsApp">WhatsApp</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="contactMethod"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Preferred Contact Method</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="bg-transparent">
-                            <SelectValue placeholder="How should we contact you?" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Phone">Phone</SelectItem>
-                          <SelectItem value="Email">Email</SelectItem>
-                           <SelectItem value="WhatsApp">WhatsApp</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name="notes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Your Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell us anything else that might be helpful."
+                              className="resize-none bg-transparent"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="notes"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Your Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Tell us anything else that might be helpful."
-                          className="resize-none bg-transparent"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name="confirm"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-background/50">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <div className="space-y-1 leading-none">
+                            <FormLabel>
+                              I agree to be contacted via the methods provided.
+                            </FormLabel>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="confirm"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-background/50">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>
-                          I agree to be contacted via the methods provided.
-                        </FormLabel>
-                      </div>
-                       <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="cta-btn cta-primary w-full"
-                  disabled={isSubmitting}
-                >
-                  <Send />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
+                    <Button
+                      type="submit"
+                      className="cta-btn cta-primary w-full"
+                      disabled={isSubmitting}
+                    >
+                      <Send />
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
