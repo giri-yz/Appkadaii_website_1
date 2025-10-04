@@ -92,9 +92,9 @@ export function ContactForm({ formType }: ContactFormProps) {
       notes: '',
       contactMethod: [],
       date: undefined,
-      time: undefined,
+      time: '',
       purpose: undefined,
-      referralSource: undefined,
+      referralSource: '',
     },
   });
 
