@@ -4,7 +4,7 @@ import React from 'react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Particles } from '@/components/landing/particles';
-import { BookingForm } from '@/components/landing/booking-form';
+import { ContactForm } from '@/components/landing/contact-form';
 
 export default function BookACallPage() {
   return (
@@ -14,7 +14,7 @@ export default function BookACallPage() {
 
       <Header />
       <main>
-        <BookingForm />
+        <ContactForm formType="appointment" />
       </main>
       <Footer />
     </>

@@ -27,11 +27,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Textarea } from '../ui/textarea';
-import { Checkbox } from '../ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
 import { Calendar as CalendarIcon, Send } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name is required.' }),
@@ -40,27 +44,42 @@ const formSchema = z.object({
   date: z.date({ required_error: 'Please select a date.' }),
   time: z.string({ required_error: 'Please select a time slot.' }),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
-  contactMethod: z.string({ required_error: 'Please select a contact method.' }),
-  notes: z.string().optional(),
-  confirm: z.boolean().refine((val) => val === true, {
-    message: 'You must confirm the details.',
+  contactMethod: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one item.",
   }),
+  referralSource: z.string().optional(),
+  notes: z.string().optional(),
 });
 
-// These entry IDs are from your Google Form.
+// These entry IDs are from your new Google Form.
 const GOOGLE_FORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSe_Phn9YTRbiVKVJ4X8-JZc_aTxpLdUF57ElTTg3Y7I6v3LzA/formResponse';
-const FULL_NAME_ID = 'entry.266149848';
-const EMAIL_ID = 'entry.158783871';
-const PHONE_ID = 'entry.1857980080';
-const DATE_ID = 'entry.1120131794';
-const TIME_ID = 'entry.1140796396';
-const PURPOSE_ID = 'entry.1029324110';
-const CONTACT_METHOD_ID = 'entry.1541891068';
-const NOTES_ID = 'entry.1637151157';
-const CONFIRM_ID = 'entry.1880268849';
+  'https://docs.google.com/forms/d/e/1FAIpQLSfVqsdpzS5O4YqCuxx_NlXWxEcWU2e6xQuily5oAb_JJMYYEA/formResponse';
 
-export function ContactForm() {
+const HIDDEN_EMAIL_ID = 'entry.618588388';
+const FULL_NAME_ID = 'entry.1948634153';
+const EMAIL_ID = 'entry.2075370401';
+const PHONE_ID = 'entry.875121725';
+const DATE_ID = 'entry.1216755856';
+const TIME_ID = 'entry.1027392810';
+const PURPOSE_ID = 'entry.1480777819';
+const CONTACT_METHOD_ID = 'entry.183810773';
+const REFERRAL_SOURCE_ID = 'entry.700209598';
+const NOTES_ID = 'entry.236791353'; // Re-using old notes ID for the new confirmation.
+const CONFIRM_ID = 'entry.236791353';
+
+const contactMethods = [
+  { id: 'Email', label: 'Email' },
+  { id: 'Phone', label: 'Phone' },
+  { id: 'Whatsapp', label: 'Whatsapp' },
+  { id: 'Video Conference', label: 'Video Conference' },
+] as const;
+
+
+interface ContactFormProps {
+  formType: 'appointment' | 'contact';
+}
+
+export function ContactForm({ formType }: ContactFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -71,15 +90,21 @@ export function ContactForm() {
       email: '',
       phone: '',
       notes: '',
+      contactMethod: [],
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     const formData = new FormData();
+    // Hidden field
+    formData.append(HIDDEN_EMAIL_ID, 'appkadaii@gmail.com');
+    
+    // User-filled fields
     formData.append(FULL_NAME_ID, values.fullName);
     formData.append(EMAIL_ID, values.email);
     formData.append(PHONE_ID, values.phone);
+    
     // Google Forms expects date as YYYY-MM-DD and time separately.
     const dateParts = format(values.date, 'yyyy-MM-dd').split('-');
     formData.append(`${DATE_ID}_year`, dateParts[0]);
@@ -91,19 +116,27 @@ export function ContactForm() {
     formData.append(`${TIME_ID}_minute`, timeParts[1]);
 
     formData.append(PURPOSE_ID, values.purpose);
-    formData.append(CONTACT_METHOD_ID, values.contactMethod);
+    
+    // Handle multiple selection for contact method
+    values.contactMethod.forEach(method => {
+      formData.append(CONTACT_METHOD_ID, method);
+    });
+
+    formData.append(REFERRAL_SOURCE_ID, values.referralSource || '');
     formData.append(NOTES_ID, values.notes || '');
-    formData.append(CONFIRM_ID, values.confirm ? 'Yes' : 'No');
+
+    // Automated confirmation
+    formData.append(CONFIRM_ID, 'Yes, I confirm.');
 
     try {
-       await fetch(GOOGLE_FORM_ACTION_URL, {
+      await fetch(GOOGLE_FORM_ACTION_URL, {
         method: 'POST',
         body: formData,
-        mode: 'no-cors', // Important: 'no-cors' mode is required for this to work.
+        mode: 'no-cors',
       });
 
       toast({
-        title: 'Form Submitted Successfully! ✅',
+        title: formType === 'appointment' ? 'Appointment Request Sent! ✅' : 'Form Submitted Successfully! ✅',
         description:
           "We've received your message and will be in touch shortly.",
       });
@@ -132,17 +165,34 @@ export function ContactForm() {
     { value: '16:00', label: '04:00 PM - 05:00 PM' },
   ];
 
+  const pageDetails = {
+    appointment: {
+      title: 'Book Your Appointment',
+      subtitle: 'Schedule a convenient time to connect with us. We look forward to assisting you.',
+      cardTitle: 'Tell us about your project',
+      buttonText: 'Request Appointment',
+    },
+    contact: {
+      title: 'Get in Touch',
+      subtitle: 'Have a project in mind or just want to say hi? Fill out the form below and we\'ll get back to you.',
+      cardTitle: 'Contact Us',
+      buttonText: 'Send Message',
+    }
+  };
+
+  const details = pageDetails[formType];
+
   return (
     <section id="contact-form" className="py-16 px-8">
       <div className="container max-w-2xl mx-auto">
         <SectionHeading
-          title="Get in Touch"
-          subtitle="Have a project in mind or just want to say hi? Fill out the form below and we'll get back to you."
+          title={details.title}
+          subtitle={details.subtitle}
         />
         <Card className="mt-12 bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-white">
-              Contact Us
+              {details.cardTitle}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -159,7 +209,11 @@ export function ContactForm() {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-transparent"/>
+                          <Input
+                            placeholder="John Doe"
+                            {...field}
+                            className="bg-transparent"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -172,26 +226,34 @@ export function ContactForm() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="you@example.com" {...field} className="bg-transparent"/>
+                          <Input
+                            placeholder="you@example.com"
+                            {...field}
+                            className="bg-transparent"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                 <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+1 (555) 123-4567" {...field} className="bg-transparent"/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="+1 (555) 123-4567"
+                          {...field}
+                          className="bg-transparent"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -218,13 +280,17 @@ export function ContactForm() {
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          <PopoverContent
+                            className="w-auto p-0"
+                            align="start"
+                          >
                             <Calendar
                               mode="single"
                               selected={field.value}
                               onSelect={field.onChange}
                               disabled={(date) =>
-                                date < new Date() || date < new Date('1900-01-01')
+                                date < new Date() ||
+                                date < new Date('1900-01-01')
                               }
                               initialFocus
                             />
@@ -240,23 +306,9 @@ export function ContactForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Preferred Time</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger className="bg-transparent">
-                              <SelectValue placeholder="Select a time slot" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {timeSlots.map((slot) => (
-                              <SelectItem key={slot.value} value={slot.value}>
-                                {slot.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                         <FormControl>
+                          <Input type="time" {...field} className="bg-transparent" />
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -279,12 +331,14 @@ export function ContactForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
+                          <SelectItem value="Project Discussion">
+                            Project Discussion
+                          </SelectItem>
                           <SelectItem value="Consultation">
                             Consultation
                           </SelectItem>
                           <SelectItem value="Demo">Demo</SelectItem>
                           <SelectItem value="Support">Support</SelectItem>
-                           <SelectItem value="Follow-up Appointment">Follow-up Appointment</SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -296,24 +350,99 @@ export function ContactForm() {
                 <FormField
                   control={form.control}
                   name="contactMethod"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Preferred Contact Method(s)</FormLabel>
+                      <div className="grid grid-cols-2 gap-4">
+                      {contactMethods.map((item) => (
+                        <FormField
+                          key={item.id}
+                          control={form.control}
+                          name="contactMethod"
+                          render={({ field }) => {
+                            return (
+                              <FormItem
+                                key={item.id}
+                                className="flex flex-row items-start space-x-3 space-y-0"
+                              >
+                                <FormControl>
+                                  <input
+                                    type="checkbox"
+                                    className="hidden"
+                                    id={item.id}
+                                    checked={field.value?.includes(item.id)}
+                                    onChange={(e) => {
+                                      const newValues = e.target.checked
+                                        ? [...(field.value || []), item.id]
+                                        : (field.value || []).filter(
+                                            (value) => value !== item.id
+                                          );
+                                      field.onChange(newValues);
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel
+                                  htmlFor={item.id}
+                                  className={cn(
+                                    "flex items-center justify-center w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background has-[:checked]:bg-primary has-[:checked]:text-primary-foreground cursor-pointer",
+                                    field.value?.includes(item.id) && "bg-primary text-primary-foreground"
+                                  )}
+                                >
+                                  {item.label}
+                                </FormLabel>
+                              </FormItem>
+                            )
+                          }}
+                        />
+                      ))}
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="referralSource"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Preferred Contact Method</FormLabel>
-                      <Select
+                      <FormLabel>How did you hear about us?</FormLabel>
+                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
+                        className="grid grid-cols-2 gap-4"
                       >
-                        <FormControl>
-                          <SelectTrigger className="bg-transparent">
-                            <SelectValue placeholder="How should we contact you?" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Phone">Phone</SelectItem>
-                          <SelectItem value="Email">Email</SelectItem>
-                           <SelectItem value="WhatsApp">WhatsApp</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="Online Advertisement" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Online Advertisement
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="Social Media" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Social Media
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="Referral" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            Referral
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="Other" />
+                          </FormControl>
+                          <FormLabel className="font-normal">Other</FormLabel>
+                        </FormItem>
+                      </RadioGroup>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -337,34 +466,13 @@ export function ContactForm() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="confirm"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 bg-background/50">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>
-                          I agree to be contacted via the methods provided.
-                        </FormLabel>
-                      </div>
-                       <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 <Button
                   type="submit"
                   className="cta-btn cta-primary w-full"
                   disabled={isSubmitting}
                 >
                   <Send />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : details.buttonText}
                 </Button>
               </form>
             </Form>
