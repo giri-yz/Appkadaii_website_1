@@ -4,8 +4,6 @@ import { Resend } from 'resend';
 import * as z from 'zod';
 import { format } from 'date-fns';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const formSchema = z.object({
   fullName: z.string(),
   email: z.string().email(),
@@ -21,6 +19,16 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export async function sendEmail(values: FormSchema) {
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Resend API key is not configured.');
+    return { 
+      success: false, 
+      error: 'The email service is not configured. Please add a Resend API key to your environment variables.' 
+    };
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { data, error } = await resend.emails.send({
       from: 'App Kadaii Contact Form <onboarding@resend.dev>',
