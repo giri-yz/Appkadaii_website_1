@@ -48,18 +48,17 @@ const formSchema = z.object({
 });
 
 // These entry IDs are from your Google Form.
-// To find them: Go to your Google Form -> Get pre-filled link -> Fill in the fields and copy the link. The entry IDs are in the URL parameters.
 const GOOGLE_FORM_ACTION_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSe_Phn9YTRbiVKVJ4X8-JZc_aTxpLdUF57ElTTg3Y7I6v3LzA/formResponse';
-const FULL_NAME_ID = 'entry.1803714247';
-const EMAIL_ID = 'entry.1086053346';
-const PHONE_ID = 'entry.124233038';
-const DATE_ID = 'entry.1599383838';
-const TIME_ID = 'entry.1691239910';
-const PURPOSE_ID = 'entry.1887349583';
-const CONTACT_METHOD_ID = 'entry.2066835252';
-const NOTES_ID = 'entry.1013723625';
-const CONFIRM_ID = 'entry.1159955702';
+const FULL_NAME_ID = 'entry.266149848';
+const EMAIL_ID = 'entry.158783871';
+const PHONE_ID = 'entry.1857980080';
+const DATE_ID = 'entry.1120131794';
+const TIME_ID = 'entry.1140796396';
+const PURPOSE_ID = 'entry.1029324110';
+const CONTACT_METHOD_ID = 'entry.1541891068';
+const NOTES_ID = 'entry.1637151157';
+const CONFIRM_ID = 'entry.1880268849';
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -81,8 +80,16 @@ export function BookingForm() {
     formData.append(FULL_NAME_ID, values.fullName);
     formData.append(EMAIL_ID, values.email);
     formData.append(PHONE_ID, values.phone);
-    formData.append(DATE_ID, format(values.date, 'yyyy-MM-dd'));
-    formData.append(TIME_ID, values.time);
+    // Google Forms expects date as YYYY-MM-DD and time separately.
+    const dateParts = format(values.date, 'yyyy-MM-dd').split('-');
+    formData.append(`${DATE_ID}_year`, dateParts[0]);
+    formData.append(`${DATE_ID}_month`, dateParts[1]);
+    formData.append(`${DATE_ID}_day`, dateParts[2]);
+
+    const timeParts = values.time.split(':');
+    formData.append(`${TIME_ID}_hour`, timeParts[0]);
+    formData.append(`${TIME_ID}_minute`, timeParts[1]);
+
     formData.append(PURPOSE_ID, values.purpose);
     formData.append(CONTACT_METHOD_ID, values.contactMethod);
     formData.append(NOTES_ID, values.notes || '');
@@ -115,13 +122,14 @@ export function BookingForm() {
   }
 
   const timeSlots = [
-    '09:00 AM - 10:00 AM',
-    '10:00 AM - 11:00 AM',
-    '11:00 AM - 12:00 PM',
-    '01:00 PM - 02:00 PM',
-    '02:00 PM - 03:00 PM',
-    '03:00 PM - 04:00 PM',
-    '04:00 PM - 05:00 PM',
+    { value: '09:00', label: '09:00 AM - 10:00 AM' },
+    { value: '10:00', label: '10:00 AM - 11:00 AM' },
+    { value: '11:00', label: '11:00 AM - 12:00 PM' },
+    { value: '12:00', label: '12:00 PM - 01:00 PM' },
+    { value: '13:00', label: '01:00 PM - 02:00 PM' },
+    { value: '14:00', label: '02:00 PM - 03:00 PM' },
+    { value: '15:00', label: '03:00 PM - 04:00 PM' },
+    { value: '16:00', label: '04:00 PM - 05:00 PM' },
   ];
 
   return (
@@ -243,8 +251,8 @@ export function BookingForm() {
                           </FormControl>
                           <SelectContent>
                             {timeSlots.map((slot) => (
-                              <SelectItem key={slot} value={slot}>
-                                {slot}
+                              <SelectItem key={slot.value} value={slot.value}>
+                                {slot.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
