@@ -112,20 +112,16 @@ ${values.notes || 'No message provided.'}
       subject
     )}&body=${encodeURIComponent(body)}`;
     
-    // This will open the user's default email client
-    window.location.href = mailtoLink;
+    // This will open the user's default email client in a new tab
+    window.open(mailtoLink, '_blank');
 
     toast({
-      title: 'Redirecting to your email client!',
+      title: 'Email client opened!',
       description: 'Please complete sending the email to submit your request.',
     });
     
-    // Since we are redirecting, we might not even see the form reset or the submitting state change.
-    // However, it's good practice to handle it.
-    setTimeout(() => {
-        form.reset();
-        setIsSubmitting(false);
-    }, 1000); // Give a moment for the mail client to open.
+    form.reset();
+    setIsSubmitting(false);
   }
 
   const pageDetails = {
@@ -438,7 +434,7 @@ ${values.notes || 'No message provided.'}
                   disabled={isSubmitting}
                 >
                   <Send />
-                  {isSubmitting ? 'Redirecting...' : details.buttonText}
+                  {isSubmitting ? 'Opening Email...' : details.buttonText}
                 </Button>
               </form>
             </Form>
@@ -448,3 +444,5 @@ ${values.notes || 'No message provided.'}
     </section>
   );
 }
+
+    
