@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './ripple-button';
+import { ModeToggle } from '../mode-toggle';
+import Image from 'next/image';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +47,7 @@ export function Header() {
     >
       <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 h-16">
         <a href="/" className="logo">
-          App kadaii
+          <Image src="/images/logo.png" alt="App kadaii logo" width={48} height={48} className="h-12 w-auto" />
         </a>
 
         <nav
@@ -62,7 +64,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-4">
+          <ModeToggle />
           <RippleButton href="/contact" className="header-cta">
             Get Started
           </RippleButton>
@@ -91,9 +94,12 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-             <RippleButton href="/contact" className="header-cta mt-4">
-              Get Started
-            </RippleButton>
+            <div className='flex items-center gap-4 mt-4'>
+              <ModeToggle />
+              <RippleButton href="/contact" className="header-cta">
+                Get Started
+              </RippleButton>
+            </div>
           </nav>
         </div>
     </header>
