@@ -91,6 +91,10 @@ export function ContactForm({ formType }: ContactFormProps) {
       phone: '',
       notes: '',
       contactMethod: [],
+      date: undefined,
+      time: undefined,
+      purpose: undefined,
+      referralSource: undefined,
     },
   });
 
