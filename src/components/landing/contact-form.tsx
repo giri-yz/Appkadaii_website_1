@@ -37,20 +37,21 @@ import {
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '../ui/checkbox';
+import { sendEmail } from '@/app/contact/actions';
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name is required.' }),
   email: z.string().email({ message: 'A valid email is required.' }),
   phone: z.string().min(10, { message: 'A valid phone number is required.' }),
   date: z.date({ required_error: 'Please select a date.' }),
-  time: z.string().optional(),
+  time: z.string().min(1, { message: 'A valid time is required.' }),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
   contactMethod: z
     .array(z.string())
     .refine((value) => value.some((item) => item), {
       message: 'You have to select at least one item.',
     }),
-  referralSource: z.string().optional(),
+  referralSource: z.string({ required_error: 'Please select a source.' }),
   notes: z.string().optional(),
 });
 
@@ -86,42 +87,27 @@ export function ContactForm({ formType }: ContactFormProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-
-    const recipientEmail = 'appkadaii@gmail.com';
-    const subject = `New ${
-      formType === 'appointment' ? 'Appointment Request' : 'Contact Form'
-    } Submission - ${values.fullName}`;
-
-    const body = `
-New Form Submission:
---------------------------------
-Full Name: ${values.fullName}
-Email: ${values.email}
-Phone: ${values.phone}
-Preferred Date: ${format(values.date, 'PPP')}
-Preferred Time: ${values.time}
-Purpose: ${values.purpose}
-Preferred Contact Method(s): ${values.contactMethod.join(', ')}
-How did you hear about us?: ${values.referralSource || 'Not specified'}
-Message:
-${values.notes || 'No message provided.'}
---------------------------------
-    `;
-
-    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
     
-    // This will open the user's default email client in a new tab
-    window.open(mailtoLink, '_blank');
-
-    toast({
-      title: 'Email client opened!',
-      description: 'Please complete sending the email to submit your request.',
-    });
-    
-    form.reset();
-    setIsSubmitting(false);
+    try {
+      const result = await sendEmail(values);
+      if (result.success) {
+        toast({
+          title: 'Message Sent!',
+          description: 'Thank you for reaching out. We will get back to you shortly.',
+        });
+        form.reset();
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (e: any) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: e.message || "Could not send your message. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const pageDetails = {
@@ -434,7 +420,7 @@ ${values.notes || 'No message provided.'}
                   disabled={isSubmitting}
                 >
                   <Send />
-                  {isSubmitting ? 'Opening Email...' : details.buttonText}
+                  {isSubmitting ? 'Sending...' : details.buttonText}
                 </Button>
               </form>
             </Form>
@@ -444,5 +430,3 @@ ${values.notes || 'No message provided.'}
     </section>
   );
 }
-
-    
