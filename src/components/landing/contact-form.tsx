@@ -109,15 +109,9 @@ export function ContactForm({ formType }: ContactFormProps) {
     formData.append(EMAIL_ID, values.email);
     formData.append(PHONE_ID, values.phone);
     
-    // Google Forms expects date as YYYY-MM-DD and time separately.
-    const dateParts = format(values.date, 'yyyy-MM-dd').split('-');
-    formData.append(`${DATE_ID}_year`, dateParts[0]);
-    formData.append(`${DATE_ID}_month`, dateParts[1]);
-    formData.append(`${DATE_ID}_day`, dateParts[2]);
-
-    const timeParts = values.time.split(':');
-    formData.append(`${TIME_ID}_hour`, timeParts[0]);
-    formData.append(`${TIME_ID}_minute`, timeParts[1]);
+    // Google Forms expects date as YYYY-MM-DD and time as HH:MM
+    formData.append(DATE_ID, format(values.date, 'yyyy-MM-dd'));
+    formData.append(TIME_ID, values.time);
 
     formData.append(PURPOSE_ID, values.purpose);
     
@@ -331,7 +325,7 @@ export function ContactForm({ formType }: ContactFormProps) {
                             Consultation
                           </SelectItem>
                           <SelectItem value="Demo">Demo</SelectItem>
-                          <SelectItem value="Support">Support</SelectItem>
+                          <SelectItem value="Technical Support">Technical Support</SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -421,6 +415,12 @@ export function ContactForm({ formType }: ContactFormProps) {
                             Referral
                           </FormLabel>
                         </FormItem>
+                         <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="Online Advertisement" />
+                          </FormControl>
+                          <FormLabel className="font-normal">Online Advertisement</FormLabel>
+                        </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="Other" />
@@ -467,3 +467,5 @@ export function ContactForm({ formType }: ContactFormProps) {
     </section>
   );
 }
+
+    
