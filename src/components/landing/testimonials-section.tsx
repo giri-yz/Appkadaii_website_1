@@ -1,23 +1,25 @@
 import React from 'react';
 import { SectionHeading } from './section-heading';
-import { Building, Award, Smile } from 'lucide-react';
+import { Building, Award, Smile, Calendar, Rocket, Users } from 'lucide-react';
 import { Counter } from './counter';
 
 const stats = [
   {
-    icon: <Building className="w-8 h-8 text-primary" />,
+    icon: <Calendar className="w-8 h-8 text-primary" />,
+    value: 2024,
+    label: 'Since 2024',
+    description: 'Turning Ideas into Reality',
+    isYear: true,
+  },
+  {
+    icon: <Rocket className="w-8 h-8 text-primary" />,
     value: 5,
-    label: 'Years in Business',
+    label: 'Projects Brought to Life',
   },
   {
-    icon: <Award className="w-8 h-8 text-primary" />,
-    value: 150,
-    label: 'Projects Completed',
-  },
-  {
-    icon: <Smile className="w-8 h-8 text-primary" />,
-    value: 100,
-    label: 'Happy Clients',
+    icon: <Users className="w-8 h-8 text-primary" />,
+    value: 3,
+    label: 'Clients (and Rising) Who Believe in Us',
   },
 ];
 
@@ -38,7 +40,7 @@ export function TestimonialsSection() {
                 Driven by Passion, Defined by Excellence
               </h3>
               <p className="text-[rgba(255,255,255,0.8)] leading-relaxed">
-                App kadaii was founded on the principle that great ideas deserve brilliant execution. We are a team of expert engineers, designers, and strategists dedicated to crafting digital solutions that are not only powerful and scalable but also beautiful and intuitive. We thrive on challenges and are committed to our clients' success.
+              Appkadai isn’t just a development company — it’s a space where innovation meets craftsmanship. We aim to empower startups, students, and businesses with custom-built apps, AI solutions, and digital tools that blend performance, creativity, and human touch.
               </p>
             </div>
             <div className="mission-card text-left p-6 bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-[rgba(16,185,129,0.05)] rounded-2xl border border-primary/50 backdrop-blur-lg">
@@ -61,21 +63,21 @@ export function TestimonialsSection() {
                     {stat.icon}
                   </div>
                   <p className="text-3xl font-bold text-primary">
-                    <Counter target={stat.value} />+
+                    {stat.isYear ? stat.value : <Counter target={stat.value} />}
                   </p>
-                  <p className="text-xs text-[rgba(255,255,255,0.7)] mt-1">
-                    {stat.label}
+                  <p className="text-xs text-[rgba(255,255,255,0.7)] mt-1 h-10 flex items-center justify-center">
+                    {stat.description || stat.label}
                   </p>
                 </div>
               ))}
             </div>
             <div className="testimonial p-8 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
               <p className="text-lg italic mb-6 text-[rgba(255,255,255,0.9)] leading-relaxed">
-                "They transformed our complex AI requirements into an elegant solution that exceeded all expectations. Their expertise is unmatched."
+              “Thank you so much for your invaluable support on this project. You truly made the entire process much smoother and less stressful. I’m genuinely grateful for your help and will definitely recommend your services to my friends and colleagues as well.”
               </p>
-              <p className="font-semibold text-primary">Sarah Chen</p>
+              <p className="font-semibold text-primary">Hensly Anisha</p>
               <p className="text-sm text-[rgba(255,255,255,0.7)]">
-                CTO, TechVision Inc.
+              Renifler
               </p>
             </div>
           </div>
