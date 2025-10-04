@@ -45,27 +45,14 @@ const formSchema = z.object({
   date: z.date({ required_error: 'Please select a date.' }),
   time: z.string({ required_error: 'Please select a time slot.' }),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
-  contactMethod: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
+  contactMethod: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {
+      message: 'You have to select at least one item.',
+    }),
   referralSource: z.string().optional(),
   notes: z.string().optional(),
 });
-
-// These entry IDs are from your new Google Form.
-const GOOGLE_FORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfVqsdpzS5O4YqCuxx_NlXWxEcWU2e6xQuily5oAb_JJMYYEA/formResponse';
-const HIDDEN_EMAIL_ID = 'entry.618588388';
-const FULL_NAME_ID = 'entry.1948634153';
-const EMAIL_ID = 'entry.2075370401';
-const PHONE_ID = 'entry.875121725';
-const DATE_ID = 'entry.1216755856';
-const TIME_ID = 'entry.1027392810';
-const PURPOSE_ID = 'entry.1480777819';
-const CONTACT_METHOD_ID = 'entry.183810773';
-const NOTES_ID = 'entry.622054705';
-const REFERRAL_SOURCE_ID = 'entry.700209598';
-const CONFIRM_ID = 'entry.236791353';
 
 const contactMethods = [
   { id: 'Email', label: 'Email' },
@@ -73,7 +60,6 @@ const contactMethods = [
   { id: 'Whatsapp', label: 'Whatsapp' },
   { id: 'Video Conference', label: 'Video Conference' },
 ] as const;
-
 
 interface ContactFormProps {
   formType: 'appointment' | 'contact';
@@ -100,71 +86,63 @@ export function ContactForm({ formType }: ContactFormProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    const formData = new FormData();
-    // Hidden field
-    formData.append(HIDDEN_EMAIL_ID, 'appkadaii@gmail.com');
-    
-    // User-filled fields
-    formData.append(FULL_NAME_ID, values.fullName);
-    formData.append(EMAIL_ID, values.email);
-    formData.append(PHONE_ID, values.phone);
-    
-    // Google Forms expects date as YYYY-MM-DD and time as HH:MM
-    formData.append(DATE_ID, format(values.date, 'yyyy-MM-dd'));
-    formData.append(TIME_ID, values.time);
 
-    formData.append(PURPOSE_ID, values.purpose);
+    const recipientEmail = 'appkadaii@gmail.com';
+    const subject = `New ${
+      formType === 'appointment' ? 'Appointment Request' : 'Contact Form'
+    } Submission - ${values.fullName}`;
+
+    const body = `
+New Form Submission:
+--------------------------------
+Full Name: ${values.fullName}
+Email: ${values.email}
+Phone: ${values.phone}
+Preferred Date: ${format(values.date, 'PPP')}
+Preferred Time: ${values.time}
+Purpose: ${values.purpose}
+Preferred Contact Method(s): ${values.contactMethod.join(', ')}
+How did you hear about us?: ${values.referralSource || 'Not specified'}
+Message:
+${values.notes || 'No message provided.'}
+--------------------------------
+    `;
+
+    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
     
-    // Handle multiple selection for contact method
-    values.contactMethod.forEach(method => {
-      formData.append(CONTACT_METHOD_ID, method);
+    // This will open the user's default email client
+    window.location.href = mailtoLink;
+
+    toast({
+      title: 'Redirecting to your email client!',
+      description: 'Please complete sending the email to submit your request.',
     });
-
-    formData.append(REFERRAL_SOURCE_ID, values.referralSource || '');
-    formData.append(NOTES_ID, values.notes || '');
-
-    // Automated confirmation
-    formData.append(CONFIRM_ID, 'Yes, I confirm.');
-
-    try {
-      await fetch(GOOGLE_FORM_ACTION_URL, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
-      });
-
-      toast({
-        title: formType === 'appointment' ? 'Appointment Request Sent! ✅' : 'Form Submitted Successfully! ✅',
-        description:
-          "We've received your message and will be in touch shortly.",
-      });
-      form.reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description:
-          'There was a problem submitting your request. Please try again.',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    
+    // Since we are redirecting, we might not even see the form reset or the submitting state change.
+    // However, it's good practice to handle it.
+    setTimeout(() => {
+        form.reset();
+        setIsSubmitting(false);
+    }, 1000); // Give a moment for the mail client to open.
   }
 
   const pageDetails = {
     appointment: {
       title: 'Book Your Appointment',
-      subtitle: 'Schedule a convenient time to connect with us. We look forward to assisting you.',
+      subtitle:
+        'Schedule a convenient time to connect with us. We look forward to assisting you.',
       cardTitle: 'Tell us about your project',
       buttonText: 'Request Appointment',
     },
     contact: {
       title: 'Get in Touch',
-      subtitle: 'Have a project in mind or just want to say hi? Fill out the form below and we\'ll get back to you.',
+      subtitle:
+        "Have a project in mind or just want to say hi? Fill out the form below and we'll get back to you.",
       cardTitle: 'Contact Us',
       buttonText: 'Send Message',
-    }
+    },
   };
 
   const details = pageDetails[formType];
@@ -172,10 +150,7 @@ export function ContactForm({ formType }: ContactFormProps) {
   return (
     <section id="contact-form" className="py-16 px-8">
       <div className="container max-w-2xl mx-auto">
-        <SectionHeading
-          title={details.title}
-          subtitle={details.subtitle}
-        />
+        <SectionHeading title={details.title} subtitle={details.subtitle} />
         <Card className="mt-12 bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-white">
@@ -267,10 +242,7 @@ export function ContactForm({ formType }: ContactFormProps) {
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent
-                            className="w-auto p-0"
-                            align="start"
-                          >
+                          <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value}
@@ -293,8 +265,12 @@ export function ContactForm({ formType }: ContactFormProps) {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Preferred Time</FormLabel>
-                         <FormControl>
-                          <Input type="time" {...field} className="bg-transparent" />
+                        <FormControl>
+                          <Input
+                            type="time"
+                            {...field}
+                            className="bg-transparent"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -325,7 +301,9 @@ export function ContactForm({ formType }: ContactFormProps) {
                             Consultation
                           </SelectItem>
                           <SelectItem value="Demo">Demo</SelectItem>
-                          <SelectItem value="Technical Support">Technical Support</SelectItem>
+                          <SelectItem value="Technical Support">
+                            Technical Support
+                          </SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -341,52 +319,55 @@ export function ContactForm({ formType }: ContactFormProps) {
                     <FormItem>
                       <FormLabel>Preferred Contact Method(s)</FormLabel>
                       <div className="grid grid-cols-2 gap-4">
-                      {contactMethods.map((item) => (
-                        <FormField
-                          key={item.id}
-                          control={form.control}
-                          name="contactMethod"
-                          render={({ field }) => {
-                            return (
-                              <FormItem
-                                key={item.id}
-                                className="flex flex-row items-start space-x-3 space-y-0"
-                              >
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(item.id)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([...(field.value || []), item.id])
-                                        : field.onChange(
-                                            (field.value || []).filter(
-                                              (value) => value !== item.id
-                                            )
-                                          )
-                                    }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                  {item.label}
-                                </FormLabel>
-                              </FormItem>
-                            )
-                          }}
-                        />
-                      ))}
+                        {contactMethods.map((item) => (
+                          <FormField
+                            key={item.id}
+                            control={form.control}
+                            name="contactMethod"
+                            render={({ field }) => {
+                              return (
+                                <FormItem
+                                  key={item.id}
+                                  className="flex flex-row items-start space-x-3 space-y-0"
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(item.id)}
+                                      onCheckedChange={(checked: any) => {
+                                        return checked
+                                          ? field.onChange([
+                                              ...(field.value || []),
+                                              item.id,
+                                            ])
+                                          : field.onChange(
+                                              (field.value || []).filter(
+                                                (value) => value !== item.id
+                                              )
+                                            );
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {item.label}
+                                  </FormLabel>
+                                </FormItem>
+                              );
+                            }}
+                          />
+                        ))}
                       </div>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="referralSource"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>How did you hear about us?</FormLabel>
-                       <RadioGroup
+                      <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                         className="grid grid-cols-2 gap-4"
@@ -411,15 +392,15 @@ export function ContactForm({ formType }: ContactFormProps) {
                           <FormControl>
                             <RadioGroupItem value="Referral" />
                           </FormControl>
-                          <FormLabel className="font-normal">
-                            Referral
-                          </FormLabel>
+                          <FormLabel className="font-normal">Referral</FormLabel>
                         </FormItem>
-                         <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="Online Advertisement" />
                           </FormControl>
-                          <FormLabel className="font-normal">Online Advertisement</FormLabel>
+                          <FormLabel className="font-normal">
+                            Online Advertisement
+                          </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
@@ -457,7 +438,7 @@ export function ContactForm({ formType }: ContactFormProps) {
                   disabled={isSubmitting}
                 >
                   <Send />
-                  {isSubmitting ? 'Sending...' : details.buttonText}
+                  {isSubmitting ? 'Redirecting...' : details.buttonText}
                 </Button>
               </form>
             </Form>
@@ -467,5 +448,3 @@ export function ContactForm({ formType }: ContactFormProps) {
     </section>
   );
 }
-
-    
