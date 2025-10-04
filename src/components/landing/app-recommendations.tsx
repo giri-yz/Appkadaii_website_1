@@ -3,15 +3,18 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { BrainCircuit } from 'lucide-react';
+import { BrainCircuit, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export function AppRecommendations() {
   const [userGoals, setUserGoals] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!userGoals.trim() || isLoading) return;
+    setIsLoading(true);
     router.push(`/recommendations?goals=${encodeURIComponent(userGoals)}`);
   };
 
@@ -39,9 +42,17 @@ export function AppRecommendations() {
                 onChange={(e) => setUserGoals(e.target.value)}
                 className="mb-4 bg-transparent text-white"
                 rows={4}
+                disabled={isLoading}
               />
-              <Button type="submit" className="cta-btn cta-primary w-full">
-                Generate Ideas
+              <Button
+                type="submit"
+                className="cta-btn cta-primary w-full"
+                disabled={isLoading || !userGoals.trim()}
+              >
+                {isLoading && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {isLoading ? 'Generating...' : 'Generate Ideas'}
               </Button>
             </form>
           </CardContent>
