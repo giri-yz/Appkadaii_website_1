@@ -34,20 +34,54 @@ export async function sendEmail(values: FormSchema) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'App Kadaii Contact Form <onboarding@resend.dev>',
-      to: ['appkadaii@gmail.com'],
-      subject: `New Contact Form Submission - ${values.fullName}`,
+      to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
+      subject: `New Inquiry from ${values.fullName} via Website Form`,
       html: `
-        <h1>New Form Submission</h1>
-        <p><strong>Full Name:</strong> ${values.fullName}</p>
-        <p><strong>Email:</strong> ${values.email}</p>
-        <p><strong>Phone:</strong> ${values.phone}</p>
-        <p><strong>Preferred Date:</strong> ${format(values.date, 'PPP')}</p>
-        <p><strong>Preferred Time:</strong> ${values.time}</p>
-        <p><strong>Purpose:</strong> ${values.purpose}</p>
-        <p><strong>Preferred Contact Method(s):</strong> ${values.contactMethod.join(', ')}</p>
-        <p><strong>Referral Source:</strong> ${values.referralSource}</p>
-        <p><strong>Message:</strong></p>
-        <p>${values.notes || 'No message provided.'}</p>
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h2 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">New Website Inquiry</h2>
+          <p>A new submission has been received through the contact form. Please find the details below.</p>
+          <table style="width: 100%; border-collapse: collapse; margin: 25px 0;">
+            <tbody>
+              <tr style="background-color: #f9f9f9;">
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Full Name:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.fullName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Email Address:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.email}</td>
+              </tr>
+              <tr style="background-color: #f9f9f9;">
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Phone Number:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.phone}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Preferred Date:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${format(values.date, 'PPP')}</td>
+              </tr>
+              <tr style="background-color: #f9f9f9;">
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Preferred Time:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.time}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Purpose of Contact:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.purpose}</td>
+              </tr>
+              <tr style="background-color: #f9f9f9;">
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Preferred Contact Method(s):</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.contactMethod.join(', ')}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Referral Source:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.referralSource}</td>
+              </tr>
+              <tr style="background-color: #f9f9f9;">
+                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Message:</td>
+                <td style="padding: 12px; border: 1px solid #ddd;">${values.notes || 'No message provided.'}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.9em; color: #777;">This email was sent automatically from the App Kadaii website.</p>
+        </div>
       `,
     });
 
