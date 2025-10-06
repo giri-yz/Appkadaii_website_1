@@ -50,9 +50,7 @@ Notes: ${values.notes || 'N/A'}
   try {
     const { data, error } = await resend.emails.send({
       from: 'App Kadaii <forms@appkadaii.in>',
-      // IMPORTANT: In Resend Sandbox mode, you can only send emails TO your verified sign-up email.
-      // Replace the placeholder below with the email you used to create your Resend account.
-      to: ['your-verified-email@example.com'],
+      to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
       subject: `New Inquiry from ${values.fullName}`,
       text: textBody,
     });
