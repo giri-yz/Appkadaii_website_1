@@ -30,16 +30,31 @@ export async function sendEmail(values: FormSchema) {
   }
 
   const resend = new Resend(RESEND_API_KEY);
+  
+  // Create a simple, parser-friendly text body
+  const textBody = `
+FullName: ${values.fullName}
+Email: ${values.email}
+Phone: ${values.phone}
+Date: ${format(values.date, 'PPP')}
+Time: ${values.time}
+Purpose: ${values.purpose}
+ContactMethod: ${values.contactMethod.join(', ')}
+ReferralSource: ${values.referralSource}
+Notes: ${values.notes || 'N/A'}
+  `.trim();
+
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'App Kadaii Contact Form <onboarding@resend.dev>',
       to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
-      subject: `New Inquiry from ${values.fullName} via Website Form`,
+      subject: `New Inquiry from ${values.fullName}`,
+      text: textBody, // Use the plain text body
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
           <h2 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">New Website Inquiry</h2>
-          <p>A new submission has been received through the contact form. Please find the details below.</p>
+          <p>A new submission has been received. Please find the details below.</p>
           <table style="width: 100%; border-collapse: collapse; margin: 25px 0;">
             <tbody>
               <tr style="background-color: #f9f9f9;">
