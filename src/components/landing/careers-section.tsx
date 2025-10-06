@@ -2,7 +2,7 @@ import React from 'react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Feather, TrendingUp, Brush, Server, MessageCircle, Bot } from 'lucide-react';
+import { Code, Feather, TrendingUp, Brush, Server, MessageCircle, Bot, Megaphone } from 'lucide-react';
 
 const jobOpenings = [
   {
@@ -23,6 +23,12 @@ const jobOpenings = [
       "Are you great at talking to AI? We're looking for someone who can craft the perfect prompts to get the best results. Your creativity and communication skills are what's most important here.",
     icon: <Bot />,
   },
+  {
+    title: 'Sales & Marketing',
+    description:
+      'We need a creative marketeer to spread the word about App kadaii. Your role will be to create engaging content, manage social media, and develop strategies to attract new clients.',
+    icon: <Megaphone />,
+  }
 ];
 
 const companyPerks = [
@@ -59,7 +65,7 @@ export function CareersSection() {
 
         <div className="mt-12">
             <h3 className="text-3xl font-bold text-center mb-10 text-primary">Current Openings</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {jobOpenings.map((job, index) => (
                 <Card key={index} className="bg-card/50 border border-primary/20 backdrop-blur-lg flex flex-col">
                 <CardHeader>
