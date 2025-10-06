@@ -12,7 +12,7 @@ export function Footer() {
     { href: '/#about', label: 'About Us' },
     { href: '/#portfolio', label: 'Our Work' },
     { href: '/#process', label: 'Process' },
-    { href: '/contact', label: 'Careers' },
+    { href: '/careers', label: 'Careers' },
     { href: '#', label: 'Blog' },
   ];
 

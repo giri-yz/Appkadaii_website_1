@@ -33,6 +33,7 @@ export function Header() {
     { href: '/#tech-stack', label: 'Stack' },
     { href: '/#portfolio', label: 'Portfolio' },
     { href: '/#about', label: 'About' },
+    { href: '/careers', label: 'Careers' },
     { href: '/#faq', label: 'FAQ' },
     { href: '/contact', label: 'Contact' },
   ];
