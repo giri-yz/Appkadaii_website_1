@@ -2,7 +2,7 @@ import React from 'react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Feather, TrendingUp, Brush, Server, MessageCircle, Bot, Megaphone } from 'lucide-react';
+import { Feather, TrendingUp, Brush, Server, Bot, Megaphone } from 'lucide-react';
 
 const jobOpenings = [
   {
@@ -81,7 +81,7 @@ export function CareersSection() {
                 <CardContent className="flex-grow flex flex-col">
                     <p className="text-muted-foreground mb-6 flex-grow">{job.description}</p>
                     <Button asChild className="w-full cta-btn cta-secondary mt-auto">
-                    <a href="/contact">Apply Now</a>
+                    <a href="/apply">Apply Now</a>
                     </Button>
                 </CardContent>
                 </Card>
