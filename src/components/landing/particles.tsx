@@ -19,7 +19,7 @@ export function Particles() {
     const isLight = theme === 'light';
     
     // Define colors based on theme
-    const particleColor = isLight ? 'rgba(0, 0, 0, 0.4)' : 'rgba(16, 185, 129, 0.6)';
+    const particleColor = isLight ? 'rgba(0, 0, 0, 0.6)' : 'rgba(16, 185, 129, 0.6)';
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
@@ -42,8 +42,8 @@ export function Particles() {
     style.textContent = `
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             animation-name: particleFloat;
             animation-timing-function: linear;
