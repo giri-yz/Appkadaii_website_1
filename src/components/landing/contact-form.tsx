@@ -44,7 +44,7 @@ const formSchema = z.object({
   email: z.string().email({ message: 'A valid email is required.' }),
   phone: z.string().min(10, { message: 'A valid phone number is required.' }),
   date: z.date({ required_error: 'Please select a date.' }),
-  time: z.string().min(1, { message: 'A valid time is required.' }),
+  time: z.string({ required_error: 'Please select a time slot.' }),
   purpose: z.string({ required_error: 'Please select a purpose.' }),
   contactMethod: z
     .array(z.string())
@@ -61,6 +61,16 @@ const contactMethods = [
   { id: 'Whatsapp', label: 'Whatsapp' },
   { id: 'Video Conference', label: 'Video Conference' },
 ] as const;
+
+const timeSlots = [
+  "09:00 AM - 10:00 AM",
+  "10:00 AM - 11:00 AM",
+  "11:00 AM - 12:00 PM",
+  "12:00 PM - 01:00 PM",
+  "02:00 PM - 03:00 PM",
+  "03:00 PM - 04:00 PM",
+  "04:00 PM - 05:00 PM",
+];
 
 interface ContactFormProps {
   formType: 'appointment' | 'contact';
@@ -247,13 +257,20 @@ export function ContactForm({ formType }: ContactFormProps) {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Preferred Time</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="time"
-                            {...field}
-                            className="bg-transparent"
-                          />
-                        </FormControl>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className='bg-transparent'>
+                              <SelectValue placeholder="Select a time slot" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {timeSlots.map((slot) => (
+                              <SelectItem key={slot} value={slot}>
+                                {slot}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
