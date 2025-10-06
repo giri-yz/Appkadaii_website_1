@@ -2,17 +2,17 @@ import React from 'react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Cpu, Feather, Rocket } from 'lucide-react';
+import { Code, Cpu, Feather, Rocket, TrendingUp } from 'lucide-react';
 
 const jobOpenings = [
   {
-    title: 'Frontend Developer (React/Next.js)',
+    title: 'Frontend Developer',
     description:
       'You will be responsible for building beautiful, performant, and accessible user interfaces using the latest web technologies. A strong sense of design and user experience is a must.',
     icon: <Code />,
   },
   {
-    title: 'Backend Developer (Node.js/Python)',
+    title: 'Backend Developer',
     description:
       'Architect and build robust, scalable, and secure server-side applications and APIs. You will work with databases, cloud services, and ensure our systems run smoothly.',
     icon: <Cpu />,
@@ -20,25 +20,29 @@ const jobOpenings = [
   {
     title: 'AI/ML Engineer',
     description:
-      'Join our AI team to design and implement cutting-edge machine learning models and integrate them into our applications. Experience with Genkit, TensorFlow, or PyTorch is a plus.',
+      'Join our AI team to design and implement cutting-edge machine learning models and integrate them into our applications. A passion for solving complex problems with AI is key.',
     icon: <Rocket />,
   },
 ];
 
 const companyPerks = [
     {
+        icon: <TrendingUp />,
+        title: "Startup Growth",
+        description: "As an early member of our startup, you'll have a massive impact and grow with us. We may not have big-company perks, but we offer a front-row seat to building something great."
+    },
+    {
+        icon: <Feather />,
         title: "Remote First",
         description: "Work from anywhere in the world. We trust you to do your best work, wherever you are."
     },
     {
+        icon: <Feather />,
         title: "Flexible Hours",
         description: "We value work-life balance. Set a schedule that works for you and your lifestyle."
     },
-    {
-        title: "Latest Tech",
-        description: "Get your hands on the newest tools and frameworks. We encourage continuous learning."
-    },
      {
+        icon: <Feather />,
         title: "Creative Freedom",
         description: "Your ideas matter. We foster a collaborative environment where you can make a real impact."
     }
@@ -84,7 +88,7 @@ export function CareersSection() {
              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {companyPerks.map((perk, index) => (
                     <div key={index} className="perk-card text-center p-6 bg-card/40 rounded-2xl border border-primary/10 transition-all duration-300 hover:bg-primary/10 hover:border-primary hover:-translate-y-2">
-                        <Feather className="w-10 h-10 mx-auto mb-4 text-primary" />
+                        <div className='w-10 h-10 mx-auto mb-4 text-primary'>{perk.icon}</div>
                         <h4 className="font-semibold text-lg mb-2 text-foreground">{perk.title}</h4>
                         <p className="text-sm text-muted-foreground">{perk.description}</p>
                     </div>
