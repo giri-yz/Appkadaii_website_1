@@ -52,12 +52,14 @@ export async function sendEmail(values: FormSchema) {
 
     if (error) {
       console.error({ error });
+      // Return the specific error message from Resend
       return { success: false, error: error.message };
     }
 
     return { success: true, data };
   } catch (error: any) {
     console.error(error);
+    // Also return the specific error message in case of a crash
     return { success: false, error: error.message || 'An unknown error occurred.' };
   }
 }
