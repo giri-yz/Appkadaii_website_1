@@ -389,3 +389,46 @@ export function ContactForm({ formType }: ContactFormProps) {
                             <RadioGroupItem value="Other" />
                           </FormControl>
                           <FormLabel className="font-normal">Other</FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="notes"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Additional Notes</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Tell us anything else we should know."
+                          className="bg-transparent"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className="w-full cta-btn cta-primary"
+                  disabled={isSubmitting}
+                >
+                  <Send className="mr-2 h-4 w-4" />
+                  {isSubmitting ? 'Sending...' : details.buttonText}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+    
