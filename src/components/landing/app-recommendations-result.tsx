@@ -146,3 +146,6 @@ export function AppRecommendationsResult() {
           </div>
         )}
       </div>
+    </section>
+  );
+}
