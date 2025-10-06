@@ -27,7 +27,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, Upload } from 'lucide-react';
+import { Send, Upload, X, File as FileIcon } from 'lucide-react';
 import { applyForJob } from '@/app/apply/actions';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -72,7 +72,8 @@ export function ApplyForm() {
     },
   });
 
-  const fileRef = form.register('resume');
+  const fileRef = React.useRef<HTMLInputElement>(null);
+  const resumeFile = form.watch('resume');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
@@ -248,14 +249,49 @@ export function ApplyForm() {
                 <FormField
                   control={form.control}
                   name="resume"
-                  render={({ field }) => (
+                  render={({ field: { onChange, onBlur, name, ref } }) => (
                     <FormItem>
                       <FormLabel>Resume</FormLabel>
-                       <FormControl>
-                         <div className="relative">
-                            <Input id="resume" type="file" className="bg-transparent pl-12" {...fileRef} />
-                            <Upload className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                         </div>
+                      <FormControl>
+                        <div>
+                          {resumeFile && resumeFile.length > 0 ? (
+                            <div className="flex items-center justify-between rounded-md border border-input bg-transparent p-2">
+                              <div className="flex items-center gap-2">
+                                <FileIcon className="h-5 w-5 text-muted-foreground" />
+                                <span className="text-sm text-foreground truncate max-w-xs">
+                                  {resumeFile[0].name}
+                                </span>
+                              </div>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon"
+                                className="h-6 w-6"
+                                onClick={() => {
+                                  form.setValue('resume', null, { shouldValidate: true });
+                                  if (fileRef.current) {
+                                    fileRef.current.value = '';
+                                  }
+                                }}
+                              >
+                                <X className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="relative">
+                              <Input
+                                id="resume"
+                                type="file"
+                                className="bg-transparent pl-12"
+                                onChange={(e) => onChange(e.target.files)}
+                                onBlur={onBlur}
+                                name={name}
+                                ref={fileRef}
+                              />
+                              <Upload className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
