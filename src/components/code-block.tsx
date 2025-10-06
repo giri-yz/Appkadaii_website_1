@@ -9,14 +9,52 @@ export function CodeBlock({ code }: { code: string }) {
   const { toast } = useToast();
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code).then(() => {
-      setHasCopied(true);
+    // Modern clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code)
+        .then(() => {
+          showSuccessToast();
+        })
+        .catch(err => {
+          console.warn('Modern clipboard access failed. Falling back.', err);
+          fallbackCopyToClipboard();
+        });
+    } else {
+      // Fallback for insecure contexts or older browsers
+      fallbackCopyToClipboard();
+    }
+  };
+
+  const fallbackCopyToClipboard = () => {
+    const textArea = document.createElement('textarea');
+    textArea.value = code;
+    // Make the textarea out of sight
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showSuccessToast();
+    } catch (err) {
+      console.error('Fallback copy to clipboard failed', err);
       toast({
-        title: 'Copied to clipboard!',
-        description: 'The code has been copied to your clipboard.',
+        variant: 'destructive',
+        title: 'Copy Failed',
+        description: 'Could not copy the code to your clipboard.',
       });
-      setTimeout(() => setHasCopied(false), 2000);
+    }
+    document.body.removeChild(textArea);
+  };
+
+  const showSuccessToast = () => {
+    setHasCopied(true);
+    toast({
+      title: 'Copied to clipboard!',
+      description: 'The code has been copied to your clipboard.',
     });
+    setTimeout(() => setHasCopied(false), 2000);
   };
 
   return (
