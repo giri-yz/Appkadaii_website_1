@@ -2,26 +2,26 @@ import React from 'react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Cpu, Feather, Rocket, TrendingUp } from 'lucide-react';
+import { Code, Cpu, Feather, Rocket, TrendingUp, ShieldCheck, UserRound } from 'lucide-react';
 
 const jobOpenings = [
   {
-    title: 'Frontend Developer',
+    title: 'Software Engineer',
     description:
-      'You will be responsible for building beautiful, performant, and accessible user interfaces using the latest web technologies. A strong sense of design and user experience is a must.',
+      "We're looking for passionate builders. We don't care if you use React, Go, Python, or something else. What matters to us is your ability to create secure, scalable, and incredibly user-friendly applications.",
     icon: <Code />,
   },
   {
-    title: 'Backend Developer',
+    title: 'Product-Minded Builder',
     description:
-      'Architect and build robust, scalable, and secure server-side applications and APIs. You will work with databases, cloud services, and ensure our systems run smoothly.',
-    icon: <Cpu />,
+      "Are you someone who thinks about the 'why' behind a feature? We need creative minds who can see the big picture and contribute to the product vision, ensuring everything we build is something users will love.",
+    icon: <UserRound />,
   },
   {
-    title: 'AI/ML Engineer',
+    title: 'Security-First Developer',
     description:
-      'Join our AI team to design and implement cutting-edge machine learning models and integrate them into our applications. A passion for solving complex problems with AI is key.',
-    icon: <Rocket />,
+      "Security isn't an afterthought; it's our foundation. If you have a passion for building robust, attack-resistant systems and ensuring user data is always protected, you'll be a perfect fit here.",
+    icon: <ShieldCheck />,
   },
 ];
 
