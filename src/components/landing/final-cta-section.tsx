@@ -8,7 +8,7 @@ export function FinalCtaSection() {
         <h2
           className="text-[clamp(2.8rem,6vw,4.5rem)] font-bold mb-4"
           style={{
-            background: 'linear-gradient(135deg, #ffffff 0%, #10b981 100%)',
+            background: 'linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 100%)',
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -16,12 +16,12 @@ export function FinalCtaSection() {
           }}
         >
           Let’s Build Something{' '}
-          <span className="text-primary [text-shadow:0_0_20px_rgba(16,185,129,0.5)]">
+          <span className="text-primary [text-shadow:0_0_20px_hsla(var(--primary),0.5)]">
             Amazing Together
           </span>
         </h2>
         <p 
-          className="text-lg text-[rgba(255,255,255,0.8)] max-w-2xl mx-auto mb-10"
+          className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10"
           style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
         >
           From vision to execution — we craft digital solutions engineered to

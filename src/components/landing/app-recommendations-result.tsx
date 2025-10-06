@@ -20,7 +20,7 @@ function RecommendationsLoading() {
     <div className="mt-12 text-center">
       <div className="flex justify-center items-center gap-4 mb-8">
         <BrainCircuit className="w-12 h-12 text-primary animate-pulse" />
-        <h3 className="text-2xl font-semibold text-white">
+        <h3 className="text-2xl font-semibold text-foreground">
           Our AI is crafting your app concept...
         </h3>
       </div>
@@ -87,22 +87,22 @@ export function AppRecommendationsResult() {
           <RecommendationsLoading />
         ) : recommendations ? (
           <div className="mt-12 space-y-8 animate-in fade-in-50 duration-500">
-            <Card className="bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)]">
+            <Card className="bg-card/50 border border-primary/20">
               <CardHeader>
                 <CardTitle className="text-3xl font-bold text-primary">
                   {recommendations.suggestedAppName}
                 </CardTitle>
-                <CardDescription className="text-lg text-[rgba(255,255,255,0.8)] pt-2">
+                <CardDescription className="text-lg text-muted-foreground pt-2">
                   {recommendations.appSummary}
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)]">
+            <Card className="bg-card/50 border border-primary/20">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Lightbulb className="w-6 h-6 text-primary" />
-                  <CardTitle className="text-2xl font-bold text-white">
+                  <CardTitle className="text-2xl font-bold text-foreground">
                     Suggested Features
                   </CardTitle>
                 </div>
@@ -112,10 +112,10 @@ export function AppRecommendationsResult() {
                   <div key={index} className="flex items-start gap-4">
                     <CheckCircle className="w-6 h-6 text-green-500 mt-1 shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-lg text-white">
+                      <h4 className="font-semibold text-lg text-foreground">
                         {feature.featureName}
                       </h4>
-                      <p className="text-[rgba(255,255,255,0.8)]">
+                      <p className="text-muted-foreground">
                         {feature.description}
                       </p>
                     </div>
@@ -124,14 +124,14 @@ export function AppRecommendationsResult() {
               </CardContent>
             </Card>
 
-            <Card className="text-center bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-[rgba(16,185,129,0.05)] border border-[rgba(16,185,129,0.2)] p-8">
+            <Card className="text-center bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 p-8">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white">
+                <CardTitle className="text-2xl font-bold text-foreground">
                   Ready to build?
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg text-[rgba(255,255,255,0.9)] mb-6 max-w-2xl mx-auto">
+                <p className="text-lg text-foreground/90 mb-6 max-w-2xl mx-auto">
                   {recommendations.nextStep}
                 </p>
                 <Button asChild className="cta-btn cta-primary">
@@ -146,6 +146,3 @@ export function AppRecommendationsResult() {
           </div>
         )}
       </div>
-    </section>
-  );
-}

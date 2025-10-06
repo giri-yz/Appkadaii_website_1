@@ -21,17 +21,17 @@ export function AppRecommendations() {
   return (
     <section id="recommendations" className="py-16 px-8">
       <div className="container max-w-4xl mx-auto">
-        <Card className="bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
+        <Card className="bg-card/50 border border-primary/20 backdrop-blur-lg">
           <CardHeader>
             <div className="flex items-center gap-4">
               <BrainCircuit className="w-10 h-10 text-primary" />
-              <CardTitle className="text-3xl font-bold text-white">
+              <CardTitle className="text-3xl font-bold text-foreground">
                 Get AI-Powered App Recommendations
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-[rgba(255,255,255,0.8)] mb-6">
+            <p className="text-muted-foreground mb-6">
               Describe your business idea or app concept, and our AI will
               generate a list of features and technologies to get you started.
             </p>
@@ -40,7 +40,7 @@ export function AppRecommendations() {
                 placeholder="e.g., A social networking app for chefs to share recipes and techniques"
                 value={userGoals}
                 onChange={(e) => setUserGoals(e.target.value)}
-                className="mb-4 bg-transparent text-white"
+                className="mb-4 bg-transparent text-foreground"
                 rows={4}
                 disabled={isLoading}
               />

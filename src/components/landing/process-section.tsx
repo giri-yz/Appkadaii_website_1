@@ -39,13 +39,13 @@ export function ProcessSection() {
           {processSteps.map((step, index) => (
             <div key={index} className="process-step relative flex items-center mb-8 md:mb-4 md:[&:nth-child(even)]:flex-row-reverse">
               <div className="md:flex-1">
-                <div className="step-content p-6 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-[rgba(16,185,129,0.2)] md:mx-8 backdrop-blur-lg transition-all duration-300 hover:bg-[rgba(16,185,129,0.1)] hover:scale-105">
+                <div className="step-content p-6 bg-card rounded-2xl border border-primary/20 md:mx-8 backdrop-blur-lg transition-all duration-300 hover:bg-primary/10 hover:scale-105">
                   <h3 className="text-xl font-semibold mb-2 text-primary">{step.title}</h3>
-                  <p className="text-[rgba(255,255,255,0.8)] leading-relaxed">{step.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
               </div>
 
-              <div className="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-br from-primary to-green-800 items-center justify-center font-bold text-lg shadow-[0_5px_15px_rgba(16,185,129,0.3)] z-10 shrink-0">
+              <div className="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-br from-primary to-green-800 items-center justify-center font-bold text-lg shadow-[0_5px_15px_hsla(var(--primary),0.3)] z-10 shrink-0">
                 {step.number}
               </div>
 

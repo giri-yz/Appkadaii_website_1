@@ -22,7 +22,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-[rgba(16,185,129,0.03)] border-t border-b border-[rgba(16,185,129,0.1)] py-16 px-8">
+    <section id="services" className="bg-muted/20 border-t border-b border-primary/10 py-16 px-8">
       <div className="container max-w-7xl mx-auto">
         <SectionHeading
           title="What We Offer"
@@ -31,18 +31,16 @@ export function ServicesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {services.map((service, index) => (
-            <div key={index} className="service-card group bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] rounded-2xl p-8 text-center transition-all duration-300 backdrop-blur-lg relative overflow-hidden hover:-translate-y-2.5 hover:scale-105 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)] hover:border-primary">
-               <div className="absolute inset-0 bg-gradient-to-br from-[rgba(16,185,129,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[rgba(16,185,129,0.2)] to-[rgba(16,185,129,0.1)] border-2 border-[rgba(16,185,129,0.3)] rounded-2xl transition-all duration-300 overflow-hidden group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)] group-hover:border-primary">
-                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(16,185,129,0.1)] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            <div key={index} className="service-card group bg-card/50 border border-primary/20 rounded-2xl p-8 text-center transition-all duration-300 backdrop-blur-lg relative overflow-hidden hover:-translate-y-2.5 hover:scale-105 hover:shadow-[0_20px_40px_hsla(var(--primary),0.2)] hover:border-primary">
+               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary/30 rounded-2xl transition-all duration-300 overflow-hidden group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-[0_10px_30px_hsla(var(--primary),0.3)] group-hover:border-primary">
+                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 {service.icon}
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-primary">{service.title}</h3>
-              <p className="text-[rgba(255,255,255,0.8)] leading-relaxed">{service.description}</p>
+              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}

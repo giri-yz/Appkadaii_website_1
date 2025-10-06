@@ -31,7 +31,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={cn(inter.className, 'bg-black text-white overflow-x-hidden relative font-body')}>
+      <body className={cn(inter.className, 'overflow-x-hidden relative font-body')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

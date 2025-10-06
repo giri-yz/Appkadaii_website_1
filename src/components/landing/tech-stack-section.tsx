@@ -18,7 +18,7 @@ const technologies = [
 
 export function TechStackSection() {
   return (
-    <section id="tech-stack" className="py-16 px-8 bg-[rgba(16,185,129,0.03)]">
+    <section id="tech-stack" className="py-16 px-8 bg-muted/20">
       <div className="container max-w-7xl mx-auto">
         <SectionHeading
           title="Our Technology Stack"
@@ -28,11 +28,11 @@ export function TechStackSection() {
           {technologies.map((tech, index) => (
             <div
               key={tech.name}
-              className="tech-card flex flex-col items-center justify-center gap-4 p-4 bg-[rgba(255,255,255,0.05)] rounded-2xl border border-transparent transition-all duration-300 hover:border-[rgba(16,185,129,0.5)] hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(16,185,129,0.2)]"
+              className="tech-card flex flex-col items-center justify-center gap-4 p-4 bg-card/50 rounded-2xl border border-transparent transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_hsla(var(--primary),0.2)]"
               style={{ animation: `drop-in 1s ease-out ${index * 100}ms both` }}
             >
               <img src={tech.icon} alt={tech.name} className="w-16 h-16 object-contain" />
-              <p className="font-semibold text-center text-white">{tech.name}</p>
+              <p className="font-semibold text-center text-foreground">{tech.name}</p>
             </div>
           ))}
         </div>

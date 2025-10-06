@@ -85,7 +85,7 @@ export function Header() {
        <div className={cn('md:hidden', isMenuOpen ? 'block' : 'hidden')}>
           <nav
             className={cn(
-              'nav-menu active absolute top-[65px] left-0 right-0 bg-[rgba(0,0,0,0.98)] backdrop-blur-[20px]',
+              'nav-menu active absolute top-[65px] left-0 right-0 bg-background/98 backdrop-blur-[20px]',
               'flex flex-col items-center p-8 gap-4'
             )}
           >

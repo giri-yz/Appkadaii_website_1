@@ -34,17 +34,17 @@ export function Footer() {
 
 
   return (
-    <footer className="bg-[rgba(16,185,129,0.05)] border-t border-[rgba(16,185,129,0.2)] pt-12 px-8 pb-8 mt-8">
+    <footer className="bg-primary/5 border-t border-primary/20 pt-12 px-8 pb-8 mt-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">App kadaii</h3>
-            <p className="text-[rgba(255,255,255,0.8)] leading-relaxed mb-4">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               Your ideal partner for transforming ideas into powerful applications.
             </p>
             <div className="flex gap-4 mt-4">
               {socialLinks.map((link, index) => (
-                <a key={index} href={link.href} className="inline-flex items-center justify-center w-10 h-10 bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] rounded-full text-primary no-underline transition-all duration-300 hover:bg-[rgba(16,185,129,0.2)] hover:-translate-y-0.5 hover:shadow-[0_5px_15px_rgba(16,185,129,0.3)]">
+                <a key={index} href={link.href} className="inline-flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-full text-primary no-underline transition-all duration-300 hover:bg-primary/20 hover:-translate-y-0.5 hover:shadow-[0_5px_15px_hsla(var(--primary),0.3)]">
                   {link.icon}
                 </a>
               ))}
@@ -54,7 +54,7 @@ export function Footer() {
             <h3 className="text-primary text-lg font-semibold mb-4">Services</h3>
             <ul className="flex flex-col gap-2">
               {serviceLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-[rgba(255,255,255,0.7)] no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
+                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
               ))}
             </ul>
           </div>
@@ -62,7 +62,7 @@ export function Footer() {
             <h3 className="text-primary text-lg font-semibold mb-4">Company</h3>
             <ul className="flex flex-col gap-2">
                {companyLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-[rgba(255,255,255,0.7)] no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
+                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
               ))}
             </ul>
           </div>
@@ -70,15 +70,10 @@ export function Footer() {
             <h3 className="text-primary text-lg font-semibold mb-4">Get In Touch</h3>
             <ul className="flex flex-col gap-2">
               {contactLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-[rgba(255,255,255,0.7)] no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
+                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="border-t border-[rgba(16,185,129,0.1)] pt-8 text-center text-[rgba(255,255,255,0.6)]">
-          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+        <div className="border-t border-primary/10 pt-8 text-center text-muted-foreground/60">
+          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</

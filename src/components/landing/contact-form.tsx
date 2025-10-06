@@ -133,9 +133,9 @@ export function ContactForm({ formType }: ContactFormProps) {
     <section id="contact-form" className="py-16 px-8">
       <div className="container max-w-2xl mx-auto">
         <SectionHeading title={details.title} subtitle={details.subtitle} />
-        <Card className="mt-12 bg-[rgba(255,255,255,0.05)] border border-[rgba(16,185,129,0.2)] backdrop-blur-lg">
+        <Card className="mt-12 bg-card/50 border border-primary/20 backdrop-blur-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">
+            <CardTitle className="text-2xl font-bold text-foreground">
               {details.cardTitle}
             </CardTitle>
           </CardHeader>
@@ -389,44 +389,3 @@ export function ContactForm({ formType }: ContactFormProps) {
                             <RadioGroupItem value="Other" />
                           </FormControl>
                           <FormLabel className="font-normal">Other</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="notes"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Your Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Tell us anything else that might be helpful."
-                          className="resize-none bg-transparent"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="cta-btn cta-primary w-full"
-                  disabled={isSubmitting}
-                >
-                  <Send />
-                  {isSubmitting ? 'Sending...' : details.buttonText}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-}
