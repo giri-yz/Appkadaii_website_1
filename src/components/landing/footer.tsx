@@ -8,14 +8,6 @@ export function Footer() {
     { href: '#', icon: '📘' },
   ];
 
-  const serviceLinks = [
-    { href: '/#services', label: 'Mobile App Development' },
-    { href: '/#services', label: 'Web Applications' },
-    { href: '/#services', label: 'AI Solutions' },
-    { href: '/#services', label: 'Custom Software' },
-    { href: '/#services', label: 'Consulting' },
-  ];
-  
   const companyLinks = [
     { href: '/#about', label: 'About Us' },
     { href: '/#portfolio', label: 'Our Work' },
@@ -36,7 +28,7 @@ export function Footer() {
   return (
     <footer className="bg-primary/5 border-t border-primary/20 pt-12 px-8 pb-8 mt-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">App kadaii</h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
@@ -49,14 +41,6 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
-          <div className="footer-section">
-            <h3 className="text-primary text-lg font-semibold mb-4">Services</h3>
-            <ul className="flex flex-col gap-2">
-              {serviceLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
-              ))}
-            </ul>
           </div>
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">Company</h3>
