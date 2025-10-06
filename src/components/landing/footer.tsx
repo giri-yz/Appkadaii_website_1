@@ -1,13 +1,6 @@
 import React from 'react';
 
 export function Footer() {
-  const socialLinks = [
-    { href: '#', icon: '📧' },
-    { href: '#', icon: '💼' },
-    { href: '#', icon: '🐦' },
-    { href: '#', icon: '📘' },
-  ];
-
   const companyLinks = [
     { href: '/#about', label: 'About Us' },
     { href: '/#portfolio', label: 'Our Work' },
@@ -34,13 +27,6 @@ export function Footer() {
             <p className="text-muted-foreground leading-relaxed mb-4">
               Your ideal partner for transforming ideas into powerful applications.
             </p>
-            <div className="flex gap-4 mt-4">
-              {socialLinks.map((link, index) => (
-                <a key={index} href={link.href} className="inline-flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-full text-primary no-underline transition-all duration-300 hover:bg-primary/20 hover:-translate-y-0.5 hover:shadow-[0_5px_15px_hsla(var(--primary),0.3)]">
-                  {link.icon}
-                </a>
-              ))}
-            </div>
           </div>
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">Company</h3>
