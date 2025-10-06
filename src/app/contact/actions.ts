@@ -49,7 +49,7 @@ Notes: ${values.notes || 'N/A'}
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'App Kadaii Contact Form <onboarding@resend.dev>',
+      from: 'App Kadaii <forms@appkadaii.in>',
       to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
       subject: `New Inquiry from ${values.fullName}`,
       text: textBody,
