@@ -6,7 +6,6 @@ export function Footer() {
     { href: '/#portfolio', label: 'Our Work' },
     { href: '/#process', label: 'Process' },
     { href: '/careers', label: 'Careers' },
-    { href: '#', label: 'Blog' },
   ];
 
   const contactLinks = [
