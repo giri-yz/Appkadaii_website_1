@@ -27,4 +27,9 @@ export function MidCtaSection() {
           </div>
           <p className="text-sm text-muted-foreground/60 mt-8" style={{ animation: 'subtitleFade 1.2s ease-out 1.2s both' }}>
             Already empowering founders to launch products with impact.
-          </p
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

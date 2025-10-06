@@ -76,4 +76,11 @@ export function TestimonialsSection() {
               “Thank you so much for your invaluable support on this project. You truly made the entire process much smoother and less stressful. I’m genuinely grateful for your help and will definitely recommend your services to my friends and colleagues as well.”
               </p>
               <p className="font-semibold text-primary">Hensly Anisha</p>
-              <p className="text-sm text-muted-
+              <p className="text-sm text-muted-foreground">Client</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

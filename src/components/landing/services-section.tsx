@@ -44,3 +44,5 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
+  );
+}

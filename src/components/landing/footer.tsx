@@ -76,4 +76,9 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-primary/10 pt-8 text-center text-muted-foreground/60">
-          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</
+          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
