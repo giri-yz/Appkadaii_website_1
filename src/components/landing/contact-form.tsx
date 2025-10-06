@@ -88,8 +88,21 @@ export function ContactForm({ formType }: ContactFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     
+    const htmlBody = `
+      <h1>New Contact Form Submission</h1>
+      <p><strong>Full Name:</strong> ${values.fullName}</p>
+      <p><strong>Email:</strong> ${values.email}</p>
+      <p><strong>Phone:</strong> ${values.phone}</p>
+      <p><strong>Date:</strong> ${format(values.date, 'PPP')}</p>
+      <p><strong>Time:</strong> ${values.time}</p>
+      <p><strong>Purpose:</strong> ${values.purpose}</p>
+      <p><strong>Contact Method:</strong> ${values.contactMethod.join(', ')}</p>
+      <p><strong>Referral Source:</strong> ${values.referralSource}</p>
+      <p><strong>Notes:</strong> ${values.notes || 'N/A'}</p>
+    `;
+
     try {
-      const result = await sendEmail(values);
+      const result = await sendEmail(values, htmlBody);
       if (result.success) {
         toast({
           title: 'Message Sent!',
@@ -430,5 +443,3 @@ export function ContactForm({ formType }: ContactFormProps) {
     </section>
   );
 }
-
-    
