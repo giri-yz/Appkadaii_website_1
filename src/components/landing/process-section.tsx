@@ -45,7 +45,7 @@ export function ProcessSection() {
                 </div>
               </div>
 
-              <div className="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-br from-primary to-green-800 items-center justify-center font-bold text-lg shadow-[0_5px_15px_hsla(var(--primary),0.3)] z-10 shrink-0">
+              <div className="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-br from-primary to-green-800 items-center justify-center font-bold text-lg shadow-[0_5px_15px_hsla(var(--primary),0.3)] z-10 shrink-0 text-white">
                 {step.number}
               </div>
 

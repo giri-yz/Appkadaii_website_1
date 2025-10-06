@@ -46,7 +46,8 @@ export function Header() {
       )}
     >
       <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 h-16">
-        <a href="/" className="logo">
+        <a href="/" className="logo flex items-center gap-2 text-2xl font-bold text-primary">
+          <Image src="https://avatars.githubusercontent.com/u/139895814?s=200&v=4" alt="App kadaii logo" width={32} height={32} className="rounded-md" />
           App kadaii
         </a>
 
