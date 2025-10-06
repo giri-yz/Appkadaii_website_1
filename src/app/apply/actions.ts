@@ -44,7 +44,7 @@ ${values.about}
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'App Kadaii Careers <forms@appkadaii.in>',
+      from: 'App Kadaii Careers <hr@appkadaii.in>',
       to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
       subject: `New Application: ${values.applyingFor} - ${values.fullName}`,
       text: textBody,
