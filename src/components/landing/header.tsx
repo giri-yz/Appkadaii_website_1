@@ -47,7 +47,7 @@ export function Header() {
     >
       <div className="header-container max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 h-16">
         <a href="/" className="logo">
-          <Image src="/images/logo.png" alt="App kadaii logo" width={48} height={48} className="h-12 w-auto" />
+          <Image src="/logo.png" alt="App kadaii logo" width={48} height={48} className="h-12 w-auto" />
         </a>
 
         <nav

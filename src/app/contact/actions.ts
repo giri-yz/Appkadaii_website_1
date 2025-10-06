@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export async function sendEmail(values: FormSchema) {
+export async function sendEmail(values: FormSchema, htmlBody: string) {
   if (!RESEND_API_KEY) {
     console.error('Resend API key is not configured.');
     return {
@@ -50,7 +50,8 @@ Notes: ${values.notes || 'N/A'}
       from: 'App Kadaii Contact Form <onboarding@resend.dev>',
       to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
       subject: `New Inquiry from ${values.fullName}`,
-      text: textBody, // Use only the plain text body for easy parsing
+      text: textBody, 
+      html: htmlBody,
     });
 
     if (error) {
