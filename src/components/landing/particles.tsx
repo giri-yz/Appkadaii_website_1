@@ -16,10 +16,9 @@ export function Particles() {
     }
 
     const particleCount = 60;
-    const isLight = theme === 'light';
     
-    // Define colors based on theme
-    const particleColor = isLight ? 'rgba(0, 0, 0, 0.6)' : 'rgba(16, 185, 129, 0.6)';
+    // Define colors based on theme - now green for both
+    const particleColor = 'rgba(16, 185, 129, 0.6)';
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
