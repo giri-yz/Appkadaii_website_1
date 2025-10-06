@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export async function sendEmail(values: FormSchema, htmlBody: string) {
+export async function sendEmail(values: FormSchema) {
   if (!RESEND_API_KEY) {
     console.error('Resend API key is not configured.');
     return {
@@ -33,14 +33,16 @@ export async function sendEmail(values: FormSchema, htmlBody: string) {
   
   // Create a simple, parser-friendly text body
   const textBody = `
-FullName: ${values.fullName}
+New Inquiry from: ${values.fullName}
+---------------------------------
+Full Name: ${values.fullName}
 Email: ${values.email}
 Phone: ${values.phone}
-Date: ${format(values.date, 'PPP')}
-Time: ${values.time}
+Preferred Date: ${format(values.date, 'PPP')}
+Preferred Time: ${values.time}
 Purpose: ${values.purpose}
-ContactMethod: ${values.contactMethod.join(', ')}
-ReferralSource: ${values.referralSource}
+Contact Method: ${values.contactMethod.join(', ')}
+Referral Source: ${values.referralSource}
 Notes: ${values.notes || 'N/A'}
   `.trim();
 
@@ -50,8 +52,7 @@ Notes: ${values.notes || 'N/A'}
       from: 'App Kadaii Contact Form <onboarding@resend.dev>',
       to: ['appkadaii@gmail.com', 'hello.gkarthick@gmail.com'],
       subject: `New Inquiry from ${values.fullName}`,
-      text: textBody, 
-      html: htmlBody,
+      text: textBody,
     });
 
     if (error) {
