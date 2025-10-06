@@ -1,5 +1,6 @@
 'use server';
 
+import 'dotenv/config';
 import { Resend } from 'resend';
 import * as z from 'zod';
 import { format } from 'date-fns';
