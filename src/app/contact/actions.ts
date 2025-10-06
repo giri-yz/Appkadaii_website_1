@@ -1,9 +1,9 @@
 'use server';
 
-import 'dotenv/config';
 import { Resend } from 'resend';
 import * as z from 'zod';
 import { format } from 'date-fns';
+import { RESEND_API_KEY } from '@/lib/config';
 
 const formSchema = z.object({
   fullName: z.string(),
@@ -20,15 +20,16 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export async function sendEmail(values: FormSchema) {
-  if (!process.env.RESEND_API_KEY) {
+  if (!RESEND_API_KEY) {
     console.error('Resend API key is not configured.');
-    return { 
-      success: false, 
-      error: 'The email service is not configured. Please add a Resend API key to your environment variables.' 
+    return {
+      success: false,
+      error:
+        'The email service is not configured. Please add a Resend API key to your environment variables.',
     };
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const resend = new Resend(RESEND_API_KEY);
 
   try {
     const { data, error } = await resend.emails.send({
@@ -60,6 +61,9 @@ export async function sendEmail(values: FormSchema) {
   } catch (error: any) {
     console.error(error);
     // Also return the specific error message in case of a crash
-    return { success: false, error: error.message || 'An unknown error occurred.' };
+    return {
+      success: false,
+      error: error.message || 'An unknown error occurred.',
+    };
   }
 }
