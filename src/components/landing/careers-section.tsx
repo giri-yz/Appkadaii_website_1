@@ -2,26 +2,26 @@ import React from 'react';
 import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Cpu, Feather, Rocket, TrendingUp, ShieldCheck, UserRound } from 'lucide-react';
+import { Code, Feather, TrendingUp, Brush, Server, MessageCircle, Bot } from 'lucide-react';
 
 const jobOpenings = [
   {
-    title: 'Software Engineer',
+    title: 'Frontend Developer',
     description:
-      "We're looking for passionate builders. We don't care if you use React, Go, Python, or something else. What matters to us is your ability to create secure, scalable, and incredibly user-friendly applications.",
-    icon: <Code />,
+      "We're looking for talented developers who can build beautiful, user-friendly interfaces. Your specific framework isn't important. What matters is your skill, creativity, and basic English + prompting abilities.",
+    icon: <Brush />,
   },
   {
-    title: 'Product-Minded Builder',
+    title: 'Backend Developer',
     description:
-      "Are you someone who thinks about the 'why' behind a feature? We need creative minds who can see the big picture and contribute to the product vision, ensuring everything we build is something users will love.",
-    icon: <UserRound />,
+      'We need skilled engineers to build the rock-solid foundation of our apps. We value talent and a security-first mindset over any specific language. Good communication (English) and prompting skills are key.',
+    icon: <Server />,
   },
   {
-    title: 'Security-First Developer',
+    title: 'AI Prompt Engineer',
     description:
-      "Security isn't an afterthought; it's our foundation. If you have a passion for building robust, attack-resistant systems and ensuring user data is always protected, you'll be a perfect fit here.",
-    icon: <ShieldCheck />,
+      "Are you great at talking to AI? We're looking for someone who can craft the perfect prompts to get the best results. Your creativity and communication skills are what's most important here.",
+    icon: <Bot />,
   },
 ];
 
