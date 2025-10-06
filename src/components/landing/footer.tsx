@@ -11,7 +11,7 @@ export function Footer() {
 
   const contactLinks = [
     { href: '/contact', label: 'Contact Us' },
-    { href: 'mailto:hello@appkadaii.com', label: 'hello@appkadaii.com' },
+    { href: 'mailto:hello@appkadaii.in', label: 'hello@appkadaii.in' },
     { href: 'tel:+1-555-0123', label: '+1 (555) 012-3456' },
     { href: '/book-a-call', label: 'Schedule a Call' },
     { href: '/contact', label: 'Support' },
