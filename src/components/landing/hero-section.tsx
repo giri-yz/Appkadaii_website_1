@@ -24,7 +24,7 @@ export function HeroSection() {
           Your Ideal Shop for <span className="text-primary">Applications</span>
         </h1>
         <div
-          className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-muted-foreground leading-normal max-w-3xl mx-auto flex items-center justify-center gap-2"
+          className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal mb-8 text-muted-foreground leading-normal max-w-3xl mx-auto flex items-center justify-center gap-2 flex-wrap"
           style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
         >
           <span>We turn your ideas into</span>
@@ -57,9 +57,9 @@ export function HeroSection() {
             </RippleButton>
           </div>
 
-          <div className="flex gap-8 mt-6 opacity-80 flex-wrap justify-center">
+          <div className="flex gap-x-8 gap-y-4 mt-6 opacity-80 flex-wrap justify-center">
             <div
-              className="text-center"
+              className="text-center w-24"
               style={{ animation: 'statPop 0.6s ease-out 1.2s both' }}
             >
               <span className="block text-3xl font-bold text-primary mb-1">
@@ -70,7 +70,7 @@ export function HeroSection() {
               </span>
             </div>
             <div
-              className="text-center"
+              className="text-center w-24"
               style={{ animation: 'statPop 0.6s ease-out 1.4s both' }}
             >
               <span className="block text-3xl font-bold text-primary mb-1">
@@ -81,7 +81,7 @@ export function HeroSection() {
               </span>
             </div>
             <div
-              className="text-center"
+              className="text-center w-24"
               style={{ animation: 'statPop 0.6s ease-out 1.6s both' }}
             >
               <span className="block text-3xl font-bold text-primary mb-1">
