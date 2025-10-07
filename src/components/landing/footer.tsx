@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import Link from 'next/link';
 
 export function Footer() {
   const companyLinks = [
@@ -93,7 +95,13 @@ export function Footer() {
         <div className="border-t border-primary/10 pt-8 text-center text-muted-foreground/60">
           <p>
             &copy; {new Date().getFullYear()} App kadaii. All rights reserved. |
-            Privacy Policy | Terms of Service
+            <Link href="/privacy-policy" className="hover:text-primary transition-colors mx-2">
+              Privacy Policy
+            </Link>
+            |
+            <Link href="/terms-of-service" className="hover:text-primary transition-colors mx-2">
+              Terms of Service
+            </Link>
           </p>
         </div>
       </div>
