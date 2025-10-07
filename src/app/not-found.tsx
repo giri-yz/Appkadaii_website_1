@@ -39,7 +39,8 @@ export default function NotFound() {
               className="text-xl text-muted-foreground max-w-xl mx-auto mb-12"
               style={{ animation: 'subtitleFade 1.2s ease-out 0.6s both' }}
             >
-              Looks like the page you’re searching for doesn’t exist. But hey, let’s get you back to building something amazing!
+              Looks like the page you’re searching for doesn’t exist. 
+              But hey, let’s get you back to building something amazing!
             </p>
 
             <div style={{ animation: 'ctaRise 1.4s ease-out 0.9s both' }}>

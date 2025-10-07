@@ -2,31 +2,31 @@
   "placeholderImages": [
     {
       "id": "fintech-app",
-      "title": "FinTech Mobile App",
-      "description": "AI-powered investment platform with real-time analytics and smart recommendations.",
+      "title": "POS Application",
+      "description": "A comprehensive Point of Sale application for retail businesses.",
       "imageUrl": "https://images.unsplash.com/photo-1599202875854-23b7cd490ff4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmaW5hbmNlJTIwYXBwfGVufDB8fHx8MTc1ODc1MDMyNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "finance app"
+      "imageHint": "retail pos"
     },
     {
       "id": "ecommerce-ai",
-      "title": "E-Commerce AI Engine",
-      "description": "Machine learning recommendation system increasing conversion rates by 40%.",
+      "title": "Personalised Finance App",
+      "description": "An intuitive app to manage personal finances with AI-driven insights.",
       "imageUrl": "https://images.unsplash.com/photo-1605902711834-8b11c3e3ef2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvbmxpbmUlMjBzaG9wcGluZ3xlbnwwfHx8fDE3NTg3MjQzNzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "online shopping"
+      "imageHint": "finance management"
     },
     {
       "id": "healthcare-dashboard",
-      "title": "Healthcare Dashboard",
-      "description": "Real-time patient monitoring with predictive health insights and alert systems.",
+      "title": "Medical POS",
+      "description": "A specialized POS system for pharmacies and medical stores.",
       "imageUrl": "https://images.unsplash.com/photo-1758691463569-66de91d76452?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtZWRpY2FsJTIwY2hhcnR8ZW58MHx8fHwxNzU4NzI3MjI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "medical chart"
+      "imageHint": "medical pharmacy"
     },
     {
       "id": "smart-home-iot",
-      "title": "Smart Home IoT",
-      "description": "Integrated home automation with voice control and intelligent energy optimization.",
+      "title": "Hotel and Restaurant POS",
+      "description": "An all-in-one POS solution for the hospitality industry.",
       "imageUrl": "https://images.unsplash.com/photo-1558089687-f282ffcbc126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMGhvbWV8ZW58MHx8fHwxNzU4NzA2OTE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "smart home"
+      "imageHint": "restaurant hotel"
     }
   ]
 }
