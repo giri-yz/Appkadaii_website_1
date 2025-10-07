@@ -3,6 +3,7 @@ import { SectionHeading } from './section-heading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Feather, TrendingUp, Brush, Server, Bot, Megaphone } from 'lucide-react';
+import Link from 'next/link';
 
 const jobOpenings = [
   {
@@ -69,8 +70,8 @@ export function CareersSection() {
             {jobOpenings.map((job, index) => (
                 <Card key={index} className="bg-card/50 border border-primary/20 backdrop-blur-lg flex flex-col">
                 <CardHeader>
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg text-primary">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                        <div className="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg text-primary shrink-0">
                             {job.icon}
                         </div>
                         <CardTitle className="text-xl font-bold text-foreground">
@@ -81,7 +82,7 @@ export function CareersSection() {
                 <CardContent className="flex-grow flex flex-col">
                     <p className="text-muted-foreground mb-6 flex-grow">{job.description}</p>
                     <Button asChild className="w-full cta-btn cta-secondary mt-auto">
-                    <a href="/apply">Apply Now</a>
+                      <Link href="/apply">Apply Now</Link>
                     </Button>
                 </CardContent>
                 </Card>

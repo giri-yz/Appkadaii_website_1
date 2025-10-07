@@ -4,7 +4,7 @@ import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -56,9 +56,11 @@ const formSchema = z.object({
     ),
 });
 
-export function ApplyForm() {
+function ApplyFormContent() {
   const { toast } = useToast();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const role = searchParams.get('role');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -67,10 +69,16 @@ export function ApplyForm() {
       fullName: '',
       email: '',
       phone: '',
-      applyingFor: '',
+      applyingFor: role || '',
       about: '',
     },
   });
+
+  React.useEffect(() => {
+    if (role) {
+      form.setValue('applyingFor', role);
+    }
+  }, [role, form]);
 
   const fileRef = React.useRef<HTMLInputElement>(null);
   const resumeFile = form.watch('resume');
@@ -199,6 +207,7 @@ export function ApplyForm() {
                       <FormLabel>Applying For</FormLabel>
                       <Select
                         onValueChange={field.onChange}
+                        value={field.value}
                         defaultValue={field.value}
                       >
                         <FormControl>
@@ -314,4 +323,12 @@ export function ApplyForm() {
       </div>
     </section>
   );
+}
+
+export function ApplyForm() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <ApplyFormContent />
+    </React.Suspense>
+  )
 }
