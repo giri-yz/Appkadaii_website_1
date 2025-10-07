@@ -25,11 +25,6 @@ export default function PrivacyPolicyPage() {
                 <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
               </p>
               
-              <div className="bg-destructive/10 border-l-4 border-destructive text-destructive-foreground p-4 rounded-md my-4">
-                  <h4 className="font-bold">Disclaimer</h4>
-                  <p>This is a sample Privacy Policy. Please consult with a legal professional to ensure this policy is appropriate for your specific business needs.</p>
-              </div>
-
               <p>
                 App kadaii ("we," "our," or "us") is committed to protecting your
                 privacy. This Privacy Policy explains how your personal
@@ -38,22 +33,18 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">1. Information We Collect</h3>
               <p>
-                We may collect personal information from you, such as your name,
-                email address, phone number, and any other information you
-                voluntarily provide to us when you fill out a contact form,
-                book a call, apply for a job, or otherwise interact with our
-                services.
+                We only collect information that you voluntarily provide to us. This includes personal details you submit through forms on our website, such as when you book a call, contact us for an inquiry, or apply for a job. The information we collect is limited to what is provided in these forms (e.g., name, email address, phone number). We do not collect any other data automatically.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">2. How We Use Your Information</h3>
               <p>
-                We use the information we collect to:
+                We use the information we collect solely to:
               </p>
               <ul>
                 <li>Provide, operate, and maintain our website and services.</li>
                 <li>Communicate with you, including responding to your inquiries and sending you updates.</li>
-                <li>Process your job applications.</li>
-                <li>Improve our website, services, and marketing efforts.</li>
+                <li>Process your job applications or contact requests.</li>
+                <li>Improve our website and services.</li>
               </ul>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">3. Information Sharing and Disclosure</h3>
@@ -68,13 +59,12 @@ export default function PrivacyPolicyPage() {
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">4. Data Security</h3>
               <p>
                 We implement a variety of security measures to maintain the safety
-                of your personal information when you submit a request or enter,
-                submit, or access your personal information.
+                of your personal information when you submit it through our forms.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">5. Your Consent</h3>
               <p>
-                By using our site, you consent to our website's privacy policy.
+                By using our site and submitting our forms, you consent to our website's privacy policy.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">6. Changes to Our Privacy Policy</h3>

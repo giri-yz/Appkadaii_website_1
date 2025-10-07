@@ -25,11 +25,6 @@ export default function TermsOfServicePage() {
                 <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
               </p>
 
-              <div className="bg-destructive/10 border-l-4 border-destructive text-destructive-foreground p-4 rounded-md my-4">
-                  <h4 className="font-bold">Disclaimer</h4>
-                  <p>This is a sample Terms of Service. Please consult with a legal professional to ensure these terms are appropriate for your specific business needs.</p>
-              </div>
-
               <p>
                 Please read these Terms of Service ("Terms", "Terms of Service")
                 carefully before using the appkadaii.in website (the "Service")
