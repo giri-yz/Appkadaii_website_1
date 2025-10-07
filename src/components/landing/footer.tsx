@@ -1,4 +1,5 @@
 import React from 'react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export function Footer() {
   const companyLinks = [
@@ -16,6 +17,23 @@ export function Footer() {
     { href: '/contact', label: 'Support' },
   ];
 
+  const socialLinks = [
+    {
+      href: 'https://www.linkedin.com/company/appkadaii',
+      label: 'LinkedIn',
+      icon: <Linkedin className="w-6 h-6" />,
+    },
+    {
+      href: 'https://www.instagram.com/appkadaii/',
+      label: 'Instagram',
+      icon: <Instagram className="w-6 h-6" />,
+    },
+    {
+      href: '#', // Placeholder for Facebook link
+      label: 'Facebook',
+      icon: <Facebook className="w-6 h-6" />,
+    },
+  ];
 
   return (
     <footer className="bg-primary/5 border-t border-primary/20 pt-12 px-8 pb-8 mt-8">
@@ -26,12 +44,33 @@ export function Footer() {
             <p className="text-muted-foreground leading-relaxed mb-4">
               Your ideal partner for transforming ideas into powerful applications.
             </p>
+            <div className="flex items-center gap-4 mt-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
           </div>
           <div className="footer-section">
             <h3 className="text-primary text-lg font-semibold mb-4">Company</h3>
             <ul className="flex flex-col gap-2">
-               {companyLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
+              {companyLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
@@ -39,13 +78,23 @@ export function Footer() {
             <h3 className="text-primary text-lg font-semibold mb-4">Get In Touch</h3>
             <ul className="flex flex-col gap-2">
               {contactLinks.map((link, index) => (
-                 <li key={index}><a href={link.href} className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary">{link.label}</a></li>
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-muted-foreground no-underline transition-colors duration-300 hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
         </div>
         <div className="border-t border-primary/10 pt-8 text-center text-muted-foreground/60">
-          <p>&copy; {new Date().getFullYear()} App kadaii. All rights reserved. | Privacy Policy | Terms of Service</p>
+          <p>
+            &copy; {new Date().getFullYear()} App kadaii. All rights reserved. |
+            Privacy Policy | Terms of Service
+          </p>
         </div>
       </div>
     </footer>
