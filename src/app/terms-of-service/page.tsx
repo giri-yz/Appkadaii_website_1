@@ -11,6 +11,8 @@ export default function TermsOfServicePage() {
   const [lastUpdated, setLastUpdated] = useState('');
 
   useEffect(() => {
+    // This code runs only on the client, after the page has loaded.
+    // This prevents a hydration error.
     setLastUpdated(new Date().toLocaleDateString());
   }, []);
 
@@ -33,54 +35,32 @@ export default function TermsOfServicePage() {
               </p>
 
               <p>
-                Please read these Terms of Service ("Terms", "Terms of Service")
-                carefully before using the appkadaii.in website (the "Service")
-                operated by App kadaii ("us", "we", or "our").
+                Please read these Terms of Service ("Terms") carefully before using the appkadaii.in website (the "Service"). This website is operated as a portfolio project and is not a registered business entity.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">1. Acceptance of Terms</h3>
               <p>
-                By accessing and using our Service, you accept and agree to be
-                bound by the terms and provision of this agreement.
+                By accessing and using our Service, you accept and agree to be bound by these terms. If you disagree with any part of the terms, then you may not access the Service.
               </p>
 
-              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">2. Use License</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">2. Use of Website</h3>
               <p>
-                Permission is granted to temporarily download one copy of the
-                materials on App kadaii's website for personal, non-commercial
-                transitory viewing only. This is the grant of a license, not a
-                transfer of title.
+                This website is intended to showcase project work and facilitate contact. The information and materials are provided for general informational purposes only.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">3. Disclaimer</h3>
               <p>
-                The materials on App kadaii's website are provided on an 'as is'
-                basis. App kadaii makes no warranties, expressed or implied,
-                and hereby disclaims and negates all other warranties.
+                The materials on this website are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all other warranties. The content is for portfolio purposes and does not constitute a formal offer of service.
               </p>
 
-              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">4. Limitations</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">4. Limitation of Liability</h3>
               <p>
-                In no event shall App kadaii or its suppliers be liable for
-                any damages (including, without limitation, damages for loss of
-                data or profit, or due to business interruption) arising out
-                of the use or inability to use the materials on App kadaii's
-                website.
+                In no event shall the owner of this website be liable for any damages arising out of the use or inability to use the materials on this website.
               </p>
               
-              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">5. Governing Law</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">5. Changes to Terms</h3>
               <p>
-                These terms and conditions are governed by and construed in
-                accordance with the laws of India and you irrevocably submit to
-                the exclusive jurisdiction of the courts in that State or
-                location.
-              </p>
-              
-              <h3 className="text-xl font-semibold mt-6 mb-2 text-foreground">6. Changes to Terms</h3>
-              <p>
-                We reserve the right, at our sole discretion, to modify or
-                replace these Terms at any time. We will provide notice of any
-                changes by posting the new Terms of Service on this page.
+                We reserve the right to modify or replace these Terms at any time. We will provide notice of any changes by posting the new Terms of Service on this page.
               </p>
 
             </CardContent>
