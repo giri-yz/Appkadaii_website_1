@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 export function Footer() {
@@ -29,11 +29,6 @@ export function Footer() {
       href: 'https://www.instagram.com/appkadaii/',
       label: 'Instagram',
       icon: <Instagram className="w-6 h-6" />,
-    },
-    {
-      href: '#', // Placeholder for Facebook link
-      label: 'Facebook',
-      icon: <Facebook className="w-6 h-6" />,
     },
   ];
 
