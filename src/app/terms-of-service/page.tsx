@@ -5,8 +5,15 @@ import { Footer } from '@/components/landing/footer';
 import { Header } from '@/components/landing/header';
 import { Particles } from '@/components/landing/particles';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
 
 export default function TermsOfServicePage() {
+  const [lastUpdated, setLastUpdated] = useState('');
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <>
       <Particles />
@@ -22,7 +29,7 @@ export default function TermsOfServicePage() {
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-foreground/90">
               <p>
-                <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
+                <strong>Last Updated:</strong> {lastUpdated}
               </p>
 
               <p>
