@@ -9,24 +9,25 @@ const inter = Inter({ subsets: ['latin'] });
 
 const siteUrl = 'https://appkadaii.in';
 const logoUrl = `${siteUrl}/Gemini_Generated_Image_iopkcriopkcriopk.png`;
-const siteTitle = 'Appkadaii – Turning Ideas into Reality | Custom App Development & AI Solutions';
+const siteTitle = 'Appkadaii – Turning Ideas into Reality';
 const siteDescription =
-  'Appkadaii is your ideal destination for custom app development, AI-powered solutions, and innovative tech ideas. From startups to enterprises, we bring your vision to life — fast.';
+  'Appkadaii builds apps, websites, and digital solutions that help businesses grow faster.';
 
 export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   keywords: [
+    'Appkadaii',
     'appkadai',
-    'appkadaii',
-    'app development',
-    'AI company',
-    'software startup',
-    'India tech company',
-    'web apps',
-    'mobile apps',
+    'software company',
+    'website builder',
+    'web development',
+    'Chennai',
+    'business apps',
     'custom software',
+    'AI solutions',
   ],
+  robots: 'index, follow',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
