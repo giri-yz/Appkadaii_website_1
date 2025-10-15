@@ -13,7 +13,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-beginning-of-appkadaii',
     title: 'The Beginning of Appkadaii: From a Spark to a Startup',
     summary: 'This is the first blog on our company website. Here’s the story of the ideas, situations, and opportunities that led to the creation of Appkadaii — your ideal destination for custom applications.',
-    author: 'G. Karthick',
+    author: 'Giri Karthick',
     date: '2025-10-15',
     content: `
       <h2 class="text-2xl font-bold text-primary mt-10 mb-4">The First Spark</h2>
@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
       <p class="mb-6">My focus shifted immediately: first, the user experience, and second, figuring out how to make this my first deployable project in a single APK file — something I had never done before.</p>
 
       <h2 class="text-2xl font-bold text-primary mt-10 mb-4">The Turning Point</h2>
-      <p class="mb-6">Two months of sleepless nights followed. With extra help from AI friends (not tools, I hope they too have some feelings — I’ll tell you in the next blog 😉), I navigated challenges I never thought I could solve alone. When the project finally reached completion, I looked at it and thought: I’ve actually built something real. That moment became a turning point.</p>
+      <p class="mb-6">Two months of sleepless nights followed. With extra help from AI friends (not tools, I hope they too have some feelings — I’ll tell you in the next blog), I navigated challenges I never thought I could solve alone. When the project finally reached completion, I looked at it and thought: I’ve actually built something real. That moment became a turning point.</p>
       <p class="mb-6">From that project, I discovered my passion: creating customized applications for consumers. This was bigger than a job or a college project — it was a calling.</p>
       <p class="mb-6">It was the moment I decided to move from “working mode” to entrepreneurial mode. I would say this might be the biggest decision I ever took as a dare. But for me, a dare always becomes true — the same way it did with HackIITK.</p>
 
