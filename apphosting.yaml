@@ -1,6 +1,10 @@
 # Settings to manage and configure a Firebase App Hosting backend.
 # https://firebase.google.com/docs/app-hosting/configure
 
+# Specifies the directory that contains your source code.
+# Setting this to '.' indicates that the app is in the root of the repository.
+sourceDirectory: .
+
 runConfig:
   # CPU allocation for the backend
   cpu: 1
