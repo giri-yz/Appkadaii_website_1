@@ -18,23 +18,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     const foundPost = blogPosts.find((p) => p.slug === params.slug);
     if (foundPost) {
       setPost(foundPost);
-      setFormattedDate(new Date(foundPost.date).toLocaleDateString());
+      setFormattedDate(new Date(foundPost.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
     } else {
-      // In a real app, you might fetch from a server here.
-      // If still not found, trigger a 404.
       notFound();
     }
   }, [params.slug]);
 
   if (!post) {
-    // You can return a loading skeleton here
     return (
       <>
         <Particles />
         <div className="global-bg"></div>
         <Header />
         <main className="py-16 px-8 pt-32">
-          <div className="container max-w-3xl mx-auto text-center">Loading post...</div>
+          <div className="container max-w-4xl mx-auto text-center">Loading post...</div>
         </main>
         <Footer />
       </>
@@ -47,7 +44,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <div className="global-bg"></div>
       <Header />
       <main className="py-16 px-8 pt-32">
-        <div className="container max-w-3xl mx-auto">
+        <div className="container max-w-4xl mx-auto">
           <Link href="/blog" className="flex items-center gap-2 text-primary mb-8 hover:underline">
             <ArrowLeft className="w-4 h-4" />
             Back to all posts
@@ -70,7 +67,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </CardHeader>
             <CardContent>
               <div
-                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-headings:text-foreground prose-strong:text-primary"
+                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-headings:text-foreground prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-strong:text-primary"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               ></div>
             </CardContent>
