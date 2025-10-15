@@ -12,11 +12,13 @@ import { useEffect, useState } from 'react';
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
+  const [formattedDate, setFormattedDate] = useState('');
 
   useEffect(() => {
     const foundPost = blogPosts.find((p) => p.slug === params.slug);
     if (foundPost) {
       setPost(foundPost);
+      setFormattedDate(new Date(foundPost.date).toLocaleDateString());
     } else {
       // In a real app, you might fetch from a server here.
       // If still not found, trigger a 404.
@@ -62,7 +64,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  <span>{new Date(post.date).toLocaleDateString()}</span>
+                  <span>{formattedDate}</span>
                 </div>
               </div>
             </CardHeader>
