@@ -34,6 +34,7 @@ export function Header() {
     { href: '/#portfolio', label: 'Portfolio' },
     { href: '/#about', label: 'About' },
     { href: '/careers', label: 'Careers' },
+    { href: '/blog', label: 'Blog' },
     { href: '/#faq', label: 'FAQ' },
     { href: '/contact', label: 'Contact' },
   ];
