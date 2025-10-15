@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
       <h2>A Lifeline and a Challenge</h2>
       <p>Soon after, life threw a curveball. I faced a suspension from college, and the world seemed a bit dim. That’s when my friend Kapi stepped in, giving me a lifeline — a new project for his aunt’s supermarket, Brownstar Supermarket.</p>
       <p>At first glance, I thought the project would be easy: just a billing system and some CRUD operations. But the moment I dove in, I realized the complexity — it was nearly like a mini bank running inside the supermarket.</p>
-      <p>My focus shifted immediately: first, the user experience, and second, figuring out to make this my first deployable project in a single APK file — something I had never done before.</p>
+      <p>My focus shifted immediately: first, the user experience, and second, figuring out how to make this my first deployable project in a single APK file — something I had never done before.</p>
 
       <h2>The Turning Point</h2>
       <p>Two months of sleepless nights followed. With extra help from AI friends (not tools, I hope they too have some feelings — I’ll tell you in the next blog 😉), I navigated challenges I never thought I could solve alone. When the project finally reached completion, I looked at it and thought: I’ve actually built something real. That moment became a turning point.</p>

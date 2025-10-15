@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Footer } from '@/components/landing/footer';
@@ -51,7 +52,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </Link>
           <Card className="bg-card/50 border border-primary/20 backdrop-blur-lg">
             <CardHeader>
-              <CardTitle className="text-4xl font-bold text-primary leading-tight">
+              <CardTitle className="text-4xl font-bold text-primary leading-tight mb-2">
                 {post.title}
               </CardTitle>
               <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4">
@@ -67,7 +68,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </CardHeader>
             <CardContent>
               <div
-                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-headings:text-foreground prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-strong:text-primary"
+                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-p:my-6 prose-headings:text-foreground prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-primary"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               ></div>
             </CardContent>
