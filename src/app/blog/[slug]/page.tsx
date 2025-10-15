@@ -68,7 +68,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </CardHeader>
             <CardContent>
               <div
-                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-h2:text-2xl prose-h2:font-bold prose-h2:text-primary prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-primary"
+                className="prose prose-invert max-w-none text-foreground/90 prose-p:leading-relaxed prose-strong:text-primary"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               ></div>
             </CardContent>
